@@ -1,0 +1,69 @@
+import Link from "next/link";
+import React from "react";
+import Mail from "./icons/Mail";
+import Linkedin from "./icons/Linkedin";
+import Instagram from "./icons/Instagram";
+import Github from "./icons/Github";
+
+export default function Footer() {
+  return (
+    <footer className="flex flex-col gap-6 mt-12">
+      <hr className="border-text-secondary rounded-sm" />
+      <div className="flex justify-between">
+        <div className="flex flex-row gap-x-11">
+          <div className="flex flex-col gap-3">
+            <p className="text-base font-semibold">General</p>
+            <div className="flex flex-col gap-x-1 text-base font-medium">
+              <Link href="/">Home</Link>
+              <Link href="/portfolio">Portfolio</Link>
+              <Link href="/blog">Blog</Link>
+              <Link href="/guestbook">Guestbook</Link>
+            </div>
+          </div>
+          <div className="flex flex-col gap-3">
+            <p className="text-base font-semibold">Extras</p>
+            <div className="grid grid-rows-4 grid-flow-col gap-y-1 gap-x-3 text-base font-medium">
+              <Link className="" href="/">
+                Resume
+              </Link>
+              <Link href="/portfolio">Snippets</Link>
+              <Link href="/blog">Uses</Link>
+              <Link href="/guestbook">Certificate</Link>
+              <Link href="/guestbook">Learning Materials</Link>
+            </div>
+          </div>
+        </div>
+        <div className="flex">
+          <Link
+            href="mailto:contact@mgkusumaputra.me"
+            target="_blank"
+            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+          >
+            <Mail />
+          </Link>
+          <Link
+            href="https://linkedin.com/in/mgkusumaputra"
+            target="_blank"
+            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+          >
+            <Linkedin />
+          </Link>
+          <Link
+            href="https://github.com/mgkusumaputra"
+            target="_blank"
+            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+          >
+            <Github />
+          </Link>
+          <Link
+            href="https://instagram.com/mgkusumaputra"
+            target="_blank"
+            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+          >
+            <Instagram />
+          </Link>
+        </div>
+      </div>
+    </footer>
+  );
+}
