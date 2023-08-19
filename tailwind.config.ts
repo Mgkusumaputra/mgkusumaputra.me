@@ -7,14 +7,16 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors: {
-      'background': '#F8FAFC',
-      'text-primary': '#18181B',
-      'text-secondary': '#2A2A2A',
-      'inactive': '#747476',
-      'primary': '#2563EB',
-      'secondary': '#D0DEFB',
-      'accent': '#047857',
+    extend: {
+      colors: {
+        'background': '#F8FAFC',
+        'text-primary': '#18181B',
+        'text-secondary': '#2A2A2A',
+        'inactive': '#747476',
+        'primary': '#2563EB',
+        'secondary': '#D0DEFB',
+        'accent': '#047857',
+      }
     }
   },
   plugins: [],
