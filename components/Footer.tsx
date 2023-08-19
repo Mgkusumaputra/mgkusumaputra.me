@@ -64,6 +64,24 @@ export default function Footer() {
           </Link>
         </div>
       </div>
+      <div className="flex flex-col gap-1 mt-6 text-sm">
+        <p className="font-semibold text-text-primary">
+          © {new Date().getFullYear()} Muhammad Garuda. All rights reserved.
+        </p>
+        <p className="font-semibold text-inactive">
+          Created with{" "}
+          <span>
+            <Link href="https://nextjs.org/" target="_blank" className="text-primary">
+              Next.js
+            </Link>
+          </span>
+          ,{" "}
+          <Link href="https://tailwindcss.com/" target="_blank" className="text-primary">
+            Tailwind
+          </Link>
+          , and 💖
+        </p>
+      </div>
     </footer>
   );
 }
