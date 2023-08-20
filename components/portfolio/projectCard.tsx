@@ -5,7 +5,7 @@ import Links from "@/components/icons/Links";
 
 export default function ProjectCard() {
   return (
-    <Link className="group flex flex-col justify-between gap-3 px-3" href="/portfolio/404">
+    <Link className="group w-full sm:w-auto flex flex-col justify-between gap-3 px-3" href="/portfolio/404">
       <Image
         src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80"
         alt={""}
