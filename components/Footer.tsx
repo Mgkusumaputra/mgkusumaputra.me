@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="flex flex-col gap-6 mt-12">
       <hr className="border-text-secondary rounded-sm" />
-      <div className="flex justify-between">
+      <div className="flex flex-col md:flex-row justify-between">
         <div className="flex flex-row gap-x-11">
           <div className="flex flex-col gap-3">
             <p className="text-base font-semibold">General</p>
@@ -23,17 +23,17 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <p className="text-base font-semibold">Extras</p>
             <div className="grid grid-rows-4 grid-flow-col gap-y-1 gap-x-3 text-base font-medium">
-              <Link className="" href="/">
+              <Link href="/resume">
                 Resume
               </Link>
-              <Link href="/portfolio">Snippets</Link>
-              <Link href="/blog">Uses</Link>
-              <Link href="/guestbook">Certificate</Link>
-              <Link href="/guestbook">Learning Materials</Link>
+              <Link href="/snippets">Snippets</Link>
+              <Link href="/uses">Uses</Link>
+              <Link href="/certificate">Certificate</Link>
+              <Link href="/materials">Learning Materials</Link>
             </div>
           </div>
         </div>
-        <div className="flex">
+        <div className="flex mt-6 md:mt-0">
           <Link
             href="mailto:contact@mgkusumaputra.me"
             target="_blank"
