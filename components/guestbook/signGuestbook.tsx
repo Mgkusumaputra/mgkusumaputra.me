@@ -1,3 +1,7 @@
+"use client";
+
+import { signIn, signOut, useSession } from "next-auth/react";
+
 import Mail from "@/icons/Mail";
 
 export function SignGuestbookLogedIn() {
@@ -23,6 +27,12 @@ export function SignGuestbookLogedIn() {
             Sign
           </button>
         </form>
+        <button
+          onClick={() => signOut()}
+          className="mt-2 text-sm text-text-secondary"
+        >
+          Sign Out
+        </button>
       </div>
     </div>
   );
@@ -41,7 +51,10 @@ export function SignGuestbookNotLogedIn() {
         </p>
       </div>
       <div className="">
-        <button className="px-3 py-1 bg-primary text-background rounded-md hover:b">
+        <button
+          onClick={() => signIn("github")}
+          className="px-3 py-1 bg-primary text-background rounded-md hover:b"
+        >
           Login With Github
         </button>
       </div>
@@ -50,5 +63,11 @@ export function SignGuestbookNotLogedIn() {
 }
 
 export default function SignGuestbook() {
+  const { status } = useSession();
+
+  if (status === "authenticated") {
+    return <SignGuestbookLogedIn />;
+  }
+
   return <SignGuestbookNotLogedIn />;
 }
