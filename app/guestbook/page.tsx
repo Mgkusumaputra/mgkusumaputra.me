@@ -8,7 +8,8 @@ async function getGuestbook() {
   const { data: guestbook } = await supabase
     .from("guestbook")
     .select("*")
-    .order("id", { ascending: false });
+    .order("id", { ascending: false })
+    .limit(100);
 
   return guestbook;
 }
