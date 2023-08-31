@@ -4,11 +4,28 @@ import { supabase } from "@/lib/supabaseClient";
 import GuestMessages from "@/components/guestbook/guestMessages";
 import SignGuestbook from "@/components/guestbook/signGuestbook";
 
-export default function GuestbookPage() {
-  async function getGuestbook() {
-    const { data: guestbook } = await supabase.from("guestbook").select("*");
+async function getGuestbook() {
+  const { data: guestbook } = await supabase
+    .from("guestbook")
+    .select("*")
+    .order("id", { ascending: false });
 
-    return guestbook;
+  return guestbook;
+}
+
+export default async function GuestbookPage() {
+  let entries;
+
+  try {
+    const [guestbookRes] = await Promise.allSettled([getGuestbook()]);
+
+    if (guestbookRes.status === "fulfilled") {
+      entries = guestbookRes.value;
+    } else {
+      console.error(guestbookRes);
+    }
+  } catch (error) {
+    console.error(error);
   }
 
   return (
@@ -23,10 +40,14 @@ export default function GuestbookPage() {
         </div>
         <SignGuestbook />
         <div className="flex flex-col gap-3">
-          <GuestMessages />
-          <GuestMessages />
-          <GuestMessages />
-          <GuestMessages />
+          {entries.map((entry) => (
+            <GuestMessages
+              key={entry.id}
+              profileURL={entry.profileImage_URL}
+              name={entry.name}
+              message={entry.message}
+            />
+          ))}
         </div>
       </div>
     </Provider>
