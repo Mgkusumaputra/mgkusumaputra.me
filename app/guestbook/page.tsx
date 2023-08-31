@@ -1,9 +1,16 @@
 import Provider from "../provider";
+import { supabase } from "@/lib/supabaseClient";
 
 import GuestMessages from "@/components/guestbook/guestMessages";
 import SignGuestbook from "@/components/guestbook/signGuestbook";
 
 export default function GuestbookPage() {
+  async function getGuestbook() {
+    const { data: guestbook } = await supabase.from("guestbook").select("*");
+
+    return guestbook;
+  }
+
   return (
     <Provider>
       <div className="flex flex-col gap-12">

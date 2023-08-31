@@ -1,10 +1,14 @@
 "use client";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import React, { useRef } from "react";
 
 import Mail from "@/icons/Mail";
+import { saveGuestbookEntry } from "@/app/actions";
 
 export function SignGuestbookLogedIn() {
+  const formRef = useRef<HTMLFormElement>(null);
+
   return (
     <div className="flex flex-col gap-y-4 px-2 py-3 bg-secondary rounded-md">
       <div className=" flex flex-col gap-1">
@@ -17,13 +21,25 @@ export function SignGuestbookLogedIn() {
         </p>
       </div>
       <div className="">
-        <form className="flex gap-4">
+        <form
+          className="flex gap-4"
+          ref={formRef}
+          action={async (formData) => {
+            await saveGuestbookEntry(formData);
+            formRef.current?.reset();
+          }}
+        >
           <input
-            type="email"
+            required
+            type="text"
+            name="entry"
             placeholder="Your Message..."
             className="px-2 py-1 w-full rounded-md focus:outline-none focus:ring focus:ring-primary"
           />
-          <button className="px-3 py-1 bg-primary text-background rounded-md hover:b">
+          <button
+            className="px-3 py-1 bg-primary text-background rounded-md hover:b"
+            type="submit"
+          >
             Sign
           </button>
         </form>

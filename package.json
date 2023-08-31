@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.33.1",
     "@types/node": "20.5.1",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
@@ -24,7 +25,8 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "cz-emoji-conventional": "^1.0.2"
+    "cz-emoji-conventional": "^1.0.2",
+    "encoding": "^0.1.13"
   },
   "config": {
     "commitizen": {
