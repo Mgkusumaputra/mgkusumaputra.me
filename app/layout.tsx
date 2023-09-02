@@ -22,10 +22,8 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.className} antialiased bg-background text-text-primary `}
       >
-        <main className="w-full mx-auto px-8 py-10 max-w-2xl md:px-0">
-          <Navbar />
+        <main>
           {children}
-          <Footer />
         </main>
       </body>
     </html>

@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@keystatic/core": "^0.1.3",
+    "@keystatic/next": "^1.0.0",
     "@supabase/supabase-js": "^2.33.1",
     "@types/node": "20.5.1",
     "@types/react": "18.2.20",

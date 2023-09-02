@@ -1,4 +1,4 @@
-import Provider from "../provider";
+import Provider from "../../provider";
 import { supabase } from "@/lib/supabaseClient";
 
 import GuestMessages from "@/components/guestbook/guestMessages";
