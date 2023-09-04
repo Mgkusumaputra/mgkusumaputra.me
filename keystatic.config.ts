@@ -20,6 +20,7 @@ export default config({
       entryLayout: "form",
       format: { contentField: "content" },
       slugField: "title",
+      path: "content/portfolio/*",
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         Url: fields.url({
@@ -42,6 +43,7 @@ export default config({
       entryLayout: "form",
       format: "json",
       slugField: "title",
+      path: "content/certificate/*",
       schema: {
         title: fields.slug({ name: { label: "Title" } }),
         Url: fields.url({
