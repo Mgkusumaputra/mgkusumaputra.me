@@ -1,7 +1,22 @@
 import ProjectCard from "@/components/portfolio/projectCard";
+import { reader } from "@/keystatic/reader";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+  const posts = await reader.collections.portfolio.all();
+
+  const projects = await Promise.all(
+    posts.map(async (post) => {
+      return {
+        redirect: post.entry.redirect,
+        image: post.entry.image,
+        title: post.entry.title,
+        description: post.entry.description,
+        projectURL: post.entry.projectURL,
+      };
+    })
+  );
+
   return (
     <div className="flex flex-col gap-12">
       <div className="flex flex-col gap-4">
@@ -12,12 +27,18 @@ export default function page() {
         </p>
       </div>
       <div className="grid grid-cols-1 justify-items-start sm:grid-cols-2 sm:justify-items-center md:grid-cols-3 gap-y-6">
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        {projects.map(({ redirect, image, title, description, projectURL }) => {
+          return (
+            // eslint-disable-next-line react/jsx-key
+            <ProjectCard
+              redirect={redirect}
+              image={image}
+              title={title}
+              description={description}
+              projectURL={projectURL}
+            />
+          );
+        })}
       </div>
     </div>
   );
