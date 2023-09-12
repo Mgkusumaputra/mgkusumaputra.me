@@ -52,6 +52,12 @@ export default config({
                         isRequired: true,
                     },
                 }),
+                orgLogo: fields.url({
+                    label: "Organization Logo",
+                    validation: {
+                        isRequired: true,
+                    },
+                }),
                 Org: fields.text({ label: "Organization" }),
                 issuedDate: fields.date({
                     label: "Issue Date",
