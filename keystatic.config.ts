@@ -78,6 +78,13 @@ export default config({
             label: "Title",
           },
         }),
+        coverImage: fields.url({
+          label: "Cover Image",
+          description: "Cover Image URL",
+          validation: {
+            isRequired: true,
+          },
+        }),
         publishedAt: fields.date({
           label: "Published at",
           validation: {
@@ -90,13 +97,23 @@ export default config({
             "Check this box to prevent this post from being published",
           defaultValue: false,
         }),
+        category: fields.select({
+          label: "Category",
+          defaultValue: "technology",
+          options: [
+            {label: 'Technology', value: 'technology'},
+            {label: 'Business', value: 'business'},
+            {label: "Design", value: "design"},
+            {label: "School", value: "school"}
+          ]
+        }),
         content: fields.document({
           label: "Content",
-          // componentBlocks,
           formatting: true,
           dividers: true,
           links: true,
           tables: true,
+          // componentBlocks,
         }),
       },
     }),
