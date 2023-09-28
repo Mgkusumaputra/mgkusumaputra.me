@@ -78,6 +78,7 @@ export default config({
             label: "Title",
           },
         }),
+        description: fields.text({ label: "Description" }),
         coverImage: fields.url({
           label: "Cover Image",
           description: "Cover Image URL",
@@ -101,11 +102,11 @@ export default config({
           label: "Category",
           defaultValue: "technology",
           options: [
-            {label: 'Technology', value: 'technology'},
-            {label: 'Business', value: 'business'},
-            {label: "Design", value: "design"},
-            {label: "School", value: "school"}
-          ]
+            { label: "Technology", value: "technology" },
+            { label: "Business", value: "business" },
+            { label: "Design", value: "design" },
+            { label: "School", value: "school" },
+          ],
         }),
         content: fields.document({
           label: "Content",

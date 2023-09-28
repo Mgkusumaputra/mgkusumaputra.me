@@ -1,6 +1,12 @@
 import BlogPostCard from "@/components/blog/blogPostCard";
+import { reader } from "@/keystatic/reader";
+import { formatDate, sortPosts } from "@/lib/posts";
 
-export default function page() {
+export default async function Page() {
+  const posts = sortPosts(await reader.collections.blog.all()).filter((post) =>
+    process.env.NODE_ENV === "production" ? !post.entry.isDraft : true
+  );
+
   return (
     <div className="flex flex-col gap-12">
       <div className="flex flex-col gap-4">
@@ -12,22 +18,28 @@ export default function page() {
         <div className="flex items-center gap-5 text-sm font-medium">
           <p>Filter</p>
           <div className="flex gap-2 text-background">
-            <button className="py-[2px] px-1 bg-secondary rounded hover:bg-primary :bg-primary">
-              Development
-            </button>
-            <button className="py-[2px] px-1 bg-secondary rounded hover:bg-primary">
-              UI/UX
-            </button>
-            <button className="py-[2px] px-1 bg-secondary rounded hover:bg-primary">
-              Startup
-            </button>
+            {posts.map(({ entry }) => (
+              // eslint-disable-next-line react/jsx-key
+              <button className="py-[2px] px-1 bg-secondary rounded hover:bg-primary">
+                {entry.category.charAt(0).toUpperCase() +
+                  entry.category.slice(1)}
+              </button>
+            ))}
           </div>
         </div>
       </div>
       <div className="flex flex-col gap-6 ">
-        <BlogPostCard />
-        <BlogPostCard />
-        <BlogPostCard />
+        {posts.map(({ slug, entry }) => (
+          // eslint-disable-next-line react/jsx-key
+          <BlogPostCard
+            href={slug}
+            title={entry.title}
+            cover={entry.coverImage}
+            description={entry.description}
+            date={formatDate(entry.publishedAt)}
+            views={100}
+          />
+        ))}
       </div>
     </div>
   );

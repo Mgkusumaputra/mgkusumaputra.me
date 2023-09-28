@@ -6,11 +6,11 @@ import { Heading } from "./heading";
 import { InlineCode } from "./inline-code";
 import { Link } from "./link";
 
-export function getDocumentRenderers(highlighter: Highlighter) {
+export function getDocumentRenderers() {
   return {
     block: {
       code(props) {
-        return <Code {...props} highlighter={highlighter} />;
+        return <Code {...props} />;
       },
       heading(props) {
         return <Heading {...props} isAnchor={props.level !== 1} />;
