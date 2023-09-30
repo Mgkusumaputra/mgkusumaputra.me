@@ -41,7 +41,7 @@ export default async function GuestbookPage() {
         </div>
         <SignGuestbook />
         <div className="flex flex-col gap-3">
-          {entries.map((entry) => (
+          {entries && entries.map((entry) => (
             <GuestMessages
               key={entry.id}
               profileURL={entry.profileImage_URL}
