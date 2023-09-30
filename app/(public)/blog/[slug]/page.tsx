@@ -1,6 +1,7 @@
 export const dynamicParams = true;
 
 import Newsletter from "@/components/Newsletter";
+import Comment from "@/components/blog/comment";
 import Analytics from "@/components/icons/Analytics";
 import Calendar from "@/components/icons/Calendar";
 import Clock from "@/components/icons/Clock";
@@ -69,6 +70,9 @@ export default async function Page({ params }: any) {
         </div>
       </article>
       <Newsletter />
+      <div className="mt-4">
+        <Comment />
+      </div>
     </>
   );
 }
