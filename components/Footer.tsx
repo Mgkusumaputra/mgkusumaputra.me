@@ -23,7 +23,7 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <p className="text-base font-semibold">Extras</p>
             <div className="grid grid-rows-4 grid-flow-col gap-y-1 gap-x-3 text-base font-medium">
-              <Link href="/resume">
+              <Link href="https://mgkusumaputra.my.id/CV">
                 Resume
               </Link>
               <Link href="/snippets">Snippets</Link>

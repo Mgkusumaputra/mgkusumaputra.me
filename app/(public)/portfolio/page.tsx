@@ -29,8 +29,8 @@ export default async function page() {
       <div className="grid grid-cols-1 justify-items-start sm:grid-cols-2 sm:justify-items-center md:grid-cols-3 gap-y-6">
         {projects.map(({ redirect, image, title, description, projectURL }) => {
           return (
-            // eslint-disable-next-line react/jsx-key
             <ProjectCard
+              key={title}
               redirect={redirect}
               image={image}
               title={title}
