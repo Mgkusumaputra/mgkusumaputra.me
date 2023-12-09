@@ -23,13 +23,13 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <p className="text-base font-semibold">Extras</p>
             <div className="grid grid-rows-4 grid-flow-col gap-y-1 gap-x-3 text-base font-medium">
-              <Link href="https://mgkusumaputra.my.id/CV">
-                Resume
-              </Link>
-              <Link href="/snippets">Snippets</Link>
-              <Link href="/uses">Uses</Link>
+              <Link href="https://mgkusumaputra.my.id/CV" target="_blank">Resume</Link>
+              {/* <Link href="/snippets">Snippets</Link>
+              <Link href="/uses">Uses</Link> */}
               <Link href="/certificate">Certificate</Link>
-              <Link href="/materials">Learning Materials</Link>
+              <Link href="https://mgkusumaputra.my.id/LearnLagoon" target="_blank">
+                Learning Materials
+              </Link>
             </div>
           </div>
         </div>
@@ -71,12 +71,20 @@ export default function Footer() {
         <p className="font-semibold text-inactive">
           Created with{" "}
           <span>
-            <Link href="https://nextjs.org/" target="_blank" className="text-primary">
+            <Link
+              href="https://nextjs.org/"
+              target="_blank"
+              className="text-primary"
+            >
               Next.js
             </Link>
           </span>
           ,{" "}
-          <Link href="https://tailwindcss.com/" target="_blank" className="text-primary">
+          <Link
+            href="https://tailwindcss.com/"
+            target="_blank"
+            className="text-primary"
+          >
             Tailwind
           </Link>
           , and 💖

@@ -12,6 +12,7 @@ type certificate = {
 type Post = {
   slug: string;
   entry: {
+    coverImage: string;
     title: string;
     publishedAt: string;
   };
