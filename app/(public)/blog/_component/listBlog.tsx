@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import BlogPostCard from "@/components/blog/blogPostCard";
 import { formatDate } from "@/lib/posts";
@@ -16,18 +16,25 @@ interface EnumServiceItem {
 }
 
 interface FilterCate {
-  category: string
+  category: string;
 }
 
 interface blogPostCardProps {
-  datas?: Array<EnumServiceItem>,
-  filteredCategory?: Array<FilterCate>
+  datas?: Array<EnumServiceItem>;
+  filteredCategory?: Array<FilterCate>;
 }
 
-export default function ListBlog({datas = [], filteredCategory=[]}: blogPostCardProps)  {
-  const [filter, setFiter] = useState('')
+export default function ListBlog({
+  datas = [],
+  filteredCategory = [],
+}: blogPostCardProps) {
+  const [filter, setFiter] = useState("");
 
-  const isFilter = useMemo(() => datas?.filter(val => !filter ? val : val?.entry?.category == filter),[filter])
+  const isFilter = useMemo(
+    () =>
+      datas?.filter((val) => (!filter ? val : val?.entry?.category == filter)),
+    [datas, filter]
+  );
   return (
     <div className="flex flex-col gap-12">
       <div className="flex flex-col gap-4">
@@ -39,17 +46,19 @@ export default function ListBlog({datas = [], filteredCategory=[]}: blogPostCard
         <div className="flex items-center gap-5 text-sm font-medium">
           <p>Filter</p>
           <div className="flex gap-2 text-background">
-            {filteredCategory.map((item, idx) => {
-              const actived = filter == item?.category
+            {filteredCategory.map((item, id) => {
+              const actived = filter == item?.category;
               return (
                 <button
-                  key={idx}
-                  onClick={() => setFiter(!actived ? item?.category : '')}
-                  className={`py-[2px] capitalize px-1 rounded hover:bg-primary ${actived ? 'bg-primary' : 'bg-secondary '}`}
+                  key={id}
+                  onClick={() => setFiter(!actived ? item?.category : "")}
+                  className={`py-[2px] capitalize px-1 rounded hover:bg-primary ${
+                    actived ? "bg-primary" : "bg-secondary "
+                  }`}
                 >
                   {item?.category}
                 </button>
-              )
+              );
             })}
           </div>
         </div>
@@ -66,9 +75,9 @@ export default function ListBlog({datas = [], filteredCategory=[]}: blogPostCard
               date={formatDate(entry?.publishedAt)}
               views={100}
             />
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
