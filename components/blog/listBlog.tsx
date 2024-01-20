@@ -52,10 +52,10 @@ export default function ListBlog({
                 <button
                   key={id}
                   onClick={() => setFiter(!actived ? item?.category : "")}
-                  className={`py-[2px] capitalize px-1 rounded hover:bg-primary ${
+                  className={`py-[2px] capitalize px-1 rounded hover:bg-primary transition-colors ${
                     actived ? "bg-primary" : "bg-secondary "
                   }`}
-                >
+                > 
                   {item?.category}
                 </button>
               );
