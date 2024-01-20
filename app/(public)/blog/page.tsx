@@ -1,6 +1,6 @@
 import { reader } from "@/keystatic/reader";
 import { sortPosts } from "@/lib/posts";
-import ListBlog from "./_component/listBlog";
+import ListBlog from "@/components/blog/listBlog";
 
 export default async function Page() {
   const posts = sortPosts(await reader.collections.blog.all()).filter((post) =>

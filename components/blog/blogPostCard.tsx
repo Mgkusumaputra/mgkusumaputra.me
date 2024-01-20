@@ -15,7 +15,7 @@ interface blogPostCardProps {
 
 export default function BlogPostCard({href, title, cover, description, date, views}: blogPostCardProps) {
   return (
-    <Link className="flex flex-row gap-6 w-full px-3 py-2 hover:bg-secondary transition-colors rounded-md " href={`/blog/${href}`}>
+    <Link className="flex flex-col md:flex-row gap-6 w-full px-3 py-2 hover:bg-secondary transition-colors rounded-md " href={`/blog/${href}`}>
       <Image
         src={cover}
         alt={""}
