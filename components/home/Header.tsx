@@ -6,7 +6,11 @@ import Linkedin from "@/icons/Linkedin";
 import Github from "@/icons/Github";
 import Instagram from "@/icons/Instagram";
 
-export default function Header() {
+import { reader } from "@/keystatic/reader";
+import { DocumentRenderer } from "@/keystatic/document-renderer";
+
+export default async function Header() {
+  const headingText = await reader.singletons.aboutme.read();
   return (
     <div className="flex flex-col gap-2 mb-12 max-w-[80%]">
       <Image
@@ -20,13 +24,10 @@ export default function Header() {
         Hi, I’m <span className="text-primary">Muhammad Garuda</span> 👋
       </h1>
       <p className="text-base font-normal">
-        I’m a senior high school student, full-stack developer, ui/ux designer,
-        and startup builder enthusiast. I love collaborating on innovative
-        projects and bringing a unique perspective to the table.
+        {headingText?.slot1}
       </p>
       <p className="text-base font-normal">
-        I’m a backend engineer at Furaha System and currently building the
-        foundation for a small retail startup.
+        {headingText?.slot2}
       </p>
       <div className="flex mt-2 gap-x-2">
         <Link

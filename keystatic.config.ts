@@ -1,4 +1,4 @@
-import { config, collection, fields } from "@keystatic/core";
+import { config, collection, fields, singleton } from "@keystatic/core";
 
 const shouldUseGithub = process.env.NODE_ENV === "production";
 
@@ -116,6 +116,16 @@ export default config({
           tables: true,
           // componentBlocks,
         }),
+      },
+    }),
+  },
+  singletons: {
+    aboutme: singleton({
+      label: "About Me",
+      path: "content/aboutme/",
+      schema: {
+        slot1: fields.text({ label: "Slot 1" }),
+        slot2: fields.text({ label: "Slot 2" }),
       },
     }),
   },
