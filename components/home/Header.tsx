@@ -12,7 +12,7 @@ import { DocumentRenderer } from "@/keystatic/document-renderer";
 export default async function Header() {
   const headingText = await reader.singletons.aboutme.read();
   return (
-    <div className="flex flex-col gap-2 mb-12 max-w-[80%]">
+    <div className="flex flex-col gap-2 mb-12 md:max-w-[80%] sm:w-full">
       <Image
         src="https://res.cloudinary.com/dspkhqhkv/image/upload/v1692420871/mgkusumaputra.me/profile_pict.jpg"
         width={64}
