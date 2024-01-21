@@ -27,7 +27,7 @@ export default function ProjectCard({ redirect, image, title, description, proje
       </div>
       <div className="flex gap-2 items-center text-text-primary group-hover:text-primary transition-colors">
         <Links className="w-4 h-4" />
-        <p className="text-sm font-semibold">{projectURL}</p>
+        <p className="text-sm font-semibold group-hover:underline">{projectURL}</p>
       </div>
     </Link>
   );

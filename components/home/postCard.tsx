@@ -17,7 +17,7 @@ export default function PostCard({href, title, description, date, views}: postCa
   return (
     <Link
       href={`/blog/${href}`}
-      className="w-full flex items-center justify-between px-2 py-3 bg-secondary hover:bg-primary rounded-md transition-colors group"
+      className="w-full flex items-center justify-between px-2 py-3 bg-secondary hover:bg-primary rounded-md transition-color hover:ease-out duration-300  group"
     >
       <div className="flex flex-col gap-3 group-hover:text-background">
         <h2 className="text-base font-bold">{title}</h2>
