@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import { ThemeToggle } from "@/components/ui/themeToggle";
 
 export default function Navbar() {
@@ -42,7 +43,9 @@ export default function Navbar() {
           <Link
             href="/blog"
             className={`relative pb-px ${
-              pathname === "/blog" ? "text-primary" : "text-muted-foreground"
+              pathname === "/blog"
+                ? "text-secondary-foreground"
+                : "text-muted-foreground"
             }`}
           >
             Blog
