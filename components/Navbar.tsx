@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/ui/themeToggle";
 
 export default function Navbar() {
   let pathname = usePathname() || "/";
@@ -11,7 +12,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="mb-12 text-base font-medium">
+    <nav className="flex items-center justify-between mb-12 text-base font-medium">
       <ul className="flex items-center gap-x-3">
         <li>
           <Link
@@ -60,6 +61,7 @@ export default function Navbar() {
           </Link>
         </li>
       </ul>
+      <ThemeToggle />
     </nav>
   );
 }
