@@ -1,6 +1,5 @@
 "use client";
 
-import { LayoutGroup, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -17,20 +16,22 @@ export default function Navbar() {
         <li>
           <Link
             href="/"
-            className={`relative pb-px${
-              pathname === "/" ? "text-primary- transition" : "text-inactive"
+            className={`relative pb-px ${
+              pathname === "/"
+                ? "text-secondary-foreground"
+                : "text-muted-foreground"
             }`}
           >
-            Home
+            <p>Home</p>
           </Link>
         </li>
         <li>
           <Link
             href="/portfolio"
-            className={`relative pb-px${
+            className={`relative pb-px ${
               pathname === "/portfolio"
-                ? "text-text-primary transition"
-                : "text-inactive"
+                ? "text-secondary-foreground"
+                : "text-muted-foreground"
             }`}
           >
             Portfolio
@@ -39,10 +40,8 @@ export default function Navbar() {
         <li>
           <Link
             href="/blog"
-            className={`relative pb-px${
-              pathname === "/blog"
-                ? "text-text-primary transition"
-                : "text-inactive"
+            className={`relative pb-px ${
+              pathname === "/blog" ? "text-primary" : "text-muted-foreground"
             }`}
           >
             Blog
@@ -51,10 +50,10 @@ export default function Navbar() {
         <li>
           <Link
             href="/guestbook"
-            className={`relative pb-px${
+            className={`relative pb-px ${
               pathname === "/guestbook"
-                ? "text-text-primary transition"
-                : "text-inactive"
+                ? "text-secondary-foreground"
+                : "text-muted-foreground"
             }`}
           >
             Guestbook

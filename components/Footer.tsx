@@ -23,11 +23,16 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <p className="text-base font-semibold">Extras</p>
             <div className="grid grid-rows-4 grid-flow-col gap-y-1 gap-x-3 text-base font-medium">
-              <Link href="https://mgkusumaputra.my.id/CV" target="_blank">Resume</Link>
+              <Link href="https://mgkusumaputra.my.id/CV" target="_blank">
+                Resume
+              </Link>
               {/* <Link href="/snippets">Snippets</Link>
               <Link href="/uses">Uses</Link> */}
               <Link href="/certificate">Certificate</Link>
-              <Link href="https://mgkusumaputra.my.id/LearnLagoon" target="_blank">
+              <Link
+                href="https://mgkusumaputra.my.id/LearnLagoon"
+                target="_blank"
+              >
                 Learning Materials
               </Link>
             </div>
@@ -37,38 +42,38 @@ export default function Footer() {
           <Link
             href="mailto:contact@mgkusumaputra.me"
             target="_blank"
-            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+            className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
             <Mail />
           </Link>
           <Link
             href="https://linkedin.com/in/mgkusumaputra"
             target="_blank"
-            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+            className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
             <Linkedin />
           </Link>
           <Link
             href="https://github.com/mgkusumaputra"
             target="_blank"
-            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+            className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
             <Github />
           </Link>
           <Link
             href="https://instagram.com/mgkusumaputra"
             target="_blank"
-            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+            className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
             <Instagram />
           </Link>
         </div>
       </div>
       <div className="flex flex-col gap-1 mt-6 text-sm">
-        <p className="font-semibold text-text-primary">
+        <p className="font-semibold text-muted-foreground">
           © {new Date().getFullYear()} Muhammad Garuda. All rights reserved.
         </p>
-        <p className="font-semibold text-inactive">
+        <p className="font-semibold text-muted-foreground">
           Created with{" "}
           <span>
             <Link
