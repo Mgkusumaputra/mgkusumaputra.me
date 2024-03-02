@@ -1,12 +1,11 @@
 "use client";
 
+import { MailIcon } from "lucide-react";
 import { useRef } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-
-import Mail from "@/icons/Mail";
 
 export default function Newsletter() {
   const ref = useRef<HTMLFormElement>(null);
@@ -45,7 +44,7 @@ export default function Newsletter() {
         <div className="flex flex-col">
           <div className=" flex flex-col gap-1 mb-3">
             <div className="flex items-center gap-2">
-              <Mail className="w-5 h-5" />
+              <MailIcon className="w-5 h-5" />
               <h1 className="text-base font-medium">Stay up to date!</h1>
             </div>
             <p className="text-sm text-muted-foreground">
@@ -74,7 +73,7 @@ export default function Newsletter() {
             />
             <Button
               type="submit"
-              className="px-3 py-1 bg-primary text-primary-foreground rounded-md hover:b"
+              className="px-3 py-1 bg-primary text-primary-foreground rounded-md"
             >
               Subscribe
             </Button>

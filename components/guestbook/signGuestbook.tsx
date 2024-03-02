@@ -1,22 +1,24 @@
 "use client";
 
+import { saveGuestbookEntry } from "@/app/actions";
+import { Github, MailIcon } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import React, { useRef } from "react";
 
-import Mail from "@/icons/Mail";
-import { saveGuestbookEntry } from "@/app/actions";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export function SignGuestbookLogedIn() {
   const formRef = useRef<HTMLFormElement>(null);
 
   return (
-    <div className="flex flex-col gap-y-4 px-2 py-3 bg-secondary rounded-md">
+    <div className="flex flex-col gap-y-4 px-3 py-4 bg-secondary rounded-md">
       <div className=" flex flex-col gap-1">
         <div className="flex items-center gap-2">
-          <Mail className="w-5 h-5" />
+          <MailIcon className="w-5 h-5" />
           <h1 className="text-base font-medium">Sign The Guestbook</h1>
         </div>
-        <p className="text-sm text-text-secondary">
+        <p className="text-sm text-muted-foreground">
           Share a message for a future visitor of my site.
         </p>
       </div>
@@ -29,23 +31,23 @@ export function SignGuestbookLogedIn() {
             formRef.current?.reset();
           }}
         >
-          <input
+          <Input
             required
             type="text"
             name="entry"
             placeholder="Your Message..."
             className="px-2 py-1 w-full rounded-md focus:outline-none focus:ring focus:ring-primary"
           />
-          <button
-            className="px-3 py-1 bg-primary text-background rounded-md hover:b"
+          <Button
+            className="px-3 py-1 bg-primary text-primary-foreground rounded-md"
             type="submit"
           >
             Sign
-          </button>
+          </Button>
         </form>
         <button
           onClick={() => signOut()}
-          className="mt-2 text-sm text-text-secondary"
+          className="mt-2 text-sm text-muted-foreground hover:text-secondary-foreground hover:underline"
         >
           Sign Out
         </button>
@@ -59,20 +61,20 @@ export function SignGuestbookNotLogedIn() {
     <div className="flex flex-col gap-y-4 px-2 py-3 bg-secondary rounded-md">
       <div className=" flex flex-col gap-1">
         <div className="flex items-center gap-2">
-          <Mail className="w-5 h-5" />
+          <MailIcon className="w-5 h-5" />
           <h1 className="text-base font-medium">Sign The Guestbook</h1>
         </div>
-        <p className="text-sm text-text-secondary">
+        <p className="text-sm text-muted-foreground">
           Share a message for a future visitor of my site.
         </p>
       </div>
       <div className="">
-        <button
+        <Button
           onClick={() => signIn("github")}
-          className="px-3 py-1 bg-primary text-background rounded-md hover:b"
+          className="px-3 py-1 gap-2 bg-primary text-primary-foreground rounded-md"
         >
-          Login With Github
-        </button>
+          <Github className="w-5 h-5" /> Login With Github
+        </Button>
       </div>
     </div>
   );
