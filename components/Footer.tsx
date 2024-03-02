@@ -102,6 +102,14 @@ export default function Footer() {
           >
             Tailwind
           </Link>
+          ,{" "}
+          <Link
+            href="https://ui.shadcn.com/"
+            target="_blank"
+            className="text-primary"
+          >
+            Shadcn/ui
+          </Link>
           , and 💖
         </p>
       </div>
