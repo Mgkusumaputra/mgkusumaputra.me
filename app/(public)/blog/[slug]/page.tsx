@@ -9,16 +9,19 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 
 export const dynamicParams = true;
+export const revalidate = 3600;
 
-export async function getStaticParams() {
-  const postSlugs = await reader.collections.blog.list();
-  return postSlugs.map((post) => ({ slug: post }));
-}
+// export async function getStaticParams() {
+//   const postSlugs = await reader.collections.blog.list();
+//   return postSlugs.map((post) => ({ slug: post }));
+// }
 
-export default async function Page({ params }: any) {
-  const { slug } = params;
-  console.log(slug);
-  const postData = await reader.collections.blog.read(slug);
+export default async function Page({ params }: { params: { slug: string } }) {
+  // const { slug } = params;
+  // console.log(slug);
+  // const postData = await reader.collections.blog.read(slug);
+  const postData = await reader.collections.blog.read(params.slug);
+
   if (!postData) {
     redirect("/404");
   }
