@@ -25,7 +25,7 @@ export default async function sitemap() {
     "/guestbook",
     "/certificate",
   ].map((route) => ({
-    url: `https://mgkusumaputra.me/${route}`,
+    url: `https://mgkusumaputra.me${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));
 
