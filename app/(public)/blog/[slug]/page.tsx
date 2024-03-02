@@ -1,17 +1,16 @@
 import Newsletter from "@/components/Newsletter";
 import Comment from "@/components/blog/comment";
+import { DocumentRenderer } from "@/keystatic/document-renderer";
+import { reader } from "@/keystatic/reader";
 import { formatDate } from "@/lib/posts";
 import { BarChart4, CalendarIcon, ClockIcon } from "lucide-react";
 
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-import { DocumentRenderer } from "@/keystatic/document-renderer";
-import { reader } from "@/keystatic/reader";
-
 export const dynamicParams = true;
 
-export async function getStaticParams() {
+async function getStaticParams() {
   const postSlugs = await reader.collections.blog.list();
   return postSlugs.map((slug) => ({ slug: { slug } }));
 }

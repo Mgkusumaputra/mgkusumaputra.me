@@ -12,9 +12,11 @@ export default async function CertificatePage() {
         url: post.entry.Url,
         orgLogo: post.entry.orgLogo,
         org: post.entry.Org,
-        issueDate: post.entry.issuedDate,
+        issueDate: post.entry.issuedDate
+          ? formatCertificateDate(post.entry.issuedDate)
+          : "", // Handle null case here
       };
-    })
+    }),
   );
 
   return (
@@ -30,13 +32,13 @@ export default async function CertificatePage() {
       <div className="flex flex-col gap-3">
         {certificates.map(({ name, url, orgLogo, org, issueDate }) => {
           return (
-            // eslint-disable-next-line react/jsx-key
             <CertificateCard
+              key={url} // Add a unique key prop here
               href={url}
               imageLogo={orgLogo}
               name={name}
               org={org}
-              issueDate={formatCertificateDate(issueDate)}
+              issueDate={issueDate}
             />
           );
         })}

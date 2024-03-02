@@ -1,4 +1,4 @@
-import { config, collection, fields, singleton } from "@keystatic/core";
+import { collection, config, fields, singleton } from "@keystatic/core";
 
 const shouldUseGithub = process.env.NODE_ENV === "production";
 

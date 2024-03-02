@@ -5,7 +5,7 @@ type certificate = {
     Url: string;
     orgLogo: string;
     Org: string;
-    issuedDate: string;
+    issuedDate: string | null;
   };
 };
 
@@ -22,16 +22,20 @@ export function sortPosts<P extends Post>(posts: P[]) {
   return posts.sort(
     (a, b) =>
       new Date(b.entry.publishedAt).getTime() -
-      new Date(a.entry.publishedAt).getTime()
+      new Date(a.entry.publishedAt).getTime(),
   );
 }
 
 export function sortCertificates<C extends certificate>(posts: C[]) {
-  return posts.sort(
-    (a, b) =>
-      new Date(b.entry.issuedDate).getTime() -
-      new Date(a.entry.issuedDate).getTime()
-  );
+  return posts.sort((a, b) => {
+    const dateA = a.entry.issuedDate
+      ? new Date(a.entry.issuedDate).getTime()
+      : 0;
+    const dateB = b.entry.issuedDate
+      ? new Date(b.entry.issuedDate).getTime()
+      : 0;
+    return dateB - dateA;
+  });
 }
 
 export function formatDate(date: string) {

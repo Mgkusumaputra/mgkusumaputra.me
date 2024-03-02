@@ -1,4 +1,3 @@
-import Links from "@/components/icons/Links";
 import { LinkIcon } from "lucide-react";
 
 import Image from "next/image";

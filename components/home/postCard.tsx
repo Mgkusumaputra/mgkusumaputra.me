@@ -3,10 +3,6 @@ import React from "react";
 
 import Link from "next/link";
 
-import Clock from "@/icons/Clock";
-import Eye from "@/icons/Eye";
-import ArrowUpRight from "@/icons/arrowUpRight";
-
 interface postCardProps {
   href: string;
   title: string;
