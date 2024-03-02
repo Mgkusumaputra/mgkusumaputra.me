@@ -1,10 +1,17 @@
+import ListBlog from "@/components/blog/listBlog";
 import { reader } from "@/keystatic/reader";
 import { sortPosts } from "@/lib/posts";
-import ListBlog from "@/components/blog/listBlog";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "From classroom insights to software engineering. Join my journey exploring theory to practice in this evolving field.",
+};
 
 export default async function Page() {
   const posts = sortPosts(await reader.collections.blog.all()).filter((post) =>
-    process.env.NODE_ENV === "production" ? !post.entry.isDraft : true
+    process.env.NODE_ENV === "production" ? !post.entry.isDraft : true,
   );
 
   const filteredCategory = posts
@@ -32,8 +39,8 @@ export default async function Page() {
           description: entry?.description,
           publishedAt: entry?.publishedAt,
         },
-      }))
-    )
+      })),
+    ),
   );
 
   return (

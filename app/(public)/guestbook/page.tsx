@@ -1,8 +1,15 @@
-import Provider from "../../provider";
-import { supabase } from "@/lib/supabaseClient";
-
 import GuestMessages from "@/components/guestbook/guestMessages";
 import SignGuestbook from "@/components/guestbook/signGuestbook";
+import { supabase } from "@/lib/supabaseClient";
+import { Metadata } from "next";
+
+import Provider from "../../provider";
+
+export const metadata: Metadata = {
+  title: "Guestbook",
+  description:
+    "Personal notes from fellow digital explorers who've left their mark.",
+};
 
 async function getGuestbook() {
   const { data: guestbook } = await supabase
@@ -41,14 +48,15 @@ export default async function GuestbookPage() {
         </div>
         <SignGuestbook />
         <div className="flex flex-col gap-3">
-          {entries && entries.map((entry) => (
-            <GuestMessages
-              key={entry.id}
-              profileURL={entry.profileImage_URL}
-              name={entry.name}
-              message={entry.message}
-            />
-          ))}
+          {entries &&
+            entries.map((entry) => (
+              <GuestMessages
+                key={entry.id}
+                profileURL={entry.profileImage_URL}
+                name={entry.name}
+                message={entry.message}
+              />
+            ))}
         </div>
       </div>
     </Provider>

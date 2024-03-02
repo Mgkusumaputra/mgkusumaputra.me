@@ -1,5 +1,4 @@
 import { reader } from "@/keystatic/reader";
-import { formatDateToISO } from "@/utils/date";
 
 async function getBlogPosts() {
   const posts = await reader.collections.blog.all();

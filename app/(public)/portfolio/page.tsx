@@ -1,6 +1,12 @@
 import ProjectCard from "@/components/portfolio/projectCard";
 import { reader } from "@/keystatic/reader";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Portfolio",
+  description: "Discover my world of exploration and creativity",
+};
 
 export default async function page() {
   const posts = await reader.collections.portfolio.all();
@@ -14,7 +20,7 @@ export default async function page() {
         description: post.entry.description,
         projectURL: post.entry.projectURL,
       };
-    })
+    }),
   );
 
   return (

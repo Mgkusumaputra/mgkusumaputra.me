@@ -4,11 +4,76 @@ import { DocumentRenderer } from "@/keystatic/document-renderer";
 import { reader } from "@/keystatic/reader";
 import { formatDate } from "@/lib/posts";
 import { BarChart4, CalendarIcon, ClockIcon } from "lucide-react";
+import { Metadata } from "next";
 
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
+type PageParam = {
+  params: {
+    slug: string;
+  };
+};
+
+type Meta = Metadata & {
+  templateTitle?: string;
+  canonical: string;
+};
+
 export const dynamicParams = true;
+
+export async function generateMetadata(context: PageParam) {
+  const getPosts = (await reader.collections.blog.all()).filter(
+    (post) => post.slug === context.params.slug,
+  );
+
+  let posts = Array.from(
+    new Set(
+      getPosts.map(({ slug, entry }) => ({
+        slug,
+        entry: {
+          title: entry?.title,
+          description: entry?.description,
+          publishedAt: entry?.publishedAt,
+        },
+      })),
+    ),
+  );
+
+  const postData = posts[0];
+
+  if (!getPosts) {
+    return;
+  }
+
+  let ogImage = `https://mgkusumaputra.me/api/og?title=${postData.entry.title}`;
+  let title = postData.entry.title;
+  let description = postData.entry.description;
+  let publishedTime = postData.entry.publishedAt;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime,
+      url: `https://mgkusumaputra.me/blog/${postData.slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const postSlugs = await reader.collections.blog.list();
