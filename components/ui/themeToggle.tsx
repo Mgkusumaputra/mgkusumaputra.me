@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import * as React from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -14,6 +14,13 @@ import {
 
 export function ThemeToggle() {
   const { setTheme } = useTheme();
+
+  const handleSystemThemeToggle = () => {
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    setTheme(prefersDarkMode ? "dark" : "light");
+  };
 
   return (
     <DropdownMenu>
@@ -31,7 +38,7 @@ export function ThemeToggle() {
         <DropdownMenuItem onClick={() => setTheme("dark")}>
           Dark
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem onClick={handleSystemThemeToggle}>
           System
         </DropdownMenuItem>
       </DropdownMenuContent>

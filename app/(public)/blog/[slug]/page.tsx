@@ -1,15 +1,15 @@
-export const dynamicParams = true;
-
 import Newsletter from "@/components/Newsletter";
 import Comment from "@/components/blog/comment";
-import Analytics from "@/components/icons/Analytics";
-import Calendar from "@/components/icons/Calendar";
-import Clock from "@/components/icons/Clock";
-import { DocumentRenderer } from "@/keystatic/document-renderer";
-import { reader } from "@/keystatic/reader";
 import { formatDate } from "@/lib/posts";
+import { BarChart4, CalendarIcon, ClockIcon } from "lucide-react";
+
 import Image from "next/image";
 import { redirect } from "next/navigation";
+
+import { DocumentRenderer } from "@/keystatic/document-renderer";
+import { reader } from "@/keystatic/reader";
+
+export const dynamicParams = true;
 
 export async function getStaticParams() {
   const postSlugs = await reader.collections.blog.list();
@@ -42,19 +42,19 @@ export default async function Page({ params }: any) {
             <div className="flex flex-col gap-1 items-center">
               <div className="flex gap-1">
                 <div className="flex items-center">
-                  <Calendar className="w-4 h-4 mr-1" />
+                  <CalendarIcon className="w-3 h-3 mr-1" />
                   <p className="text-sm font-normal">
                     {formatDate(postData.publishedAt)}
                   </p>
                 </div>
                 <span>—</span>
                 <div className="flex items-center">
-                  <Clock className="w-4 h-4 mr-1" />
+                  <ClockIcon className="w-3 h-3 mr-1" />
                   <p className="text-sm font-normal">{`10+ Minutes Read`}</p>
                 </div>
               </div>
               <div className="flex items-center">
-                <Analytics className="w-4 h-4 mr-1" />
+                <BarChart4 className="w-3 h-3 mr-1" />
                 <p className="text-sm font-normal">{100}</p>
               </div>
             </div>
