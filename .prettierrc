@@ -5,6 +5,7 @@
     "^@/api/(.*)$",
     "^@/component/(.*)$",
     "^@/components/ui(.*)$",
+    "^@/constant(.*)$",
     "^@/icons/(.*)$",
     "^@/keystatic/(.*)$",
     "^[./]"

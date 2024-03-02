@@ -1,9 +1,13 @@
-import Link from "next/link";
 import React from "react";
-import Mail from "./icons/Mail";
-import Linkedin from "./icons/Linkedin";
-import Instagram from "./icons/Instagram";
+
+import Link from "next/link";
+
+import { footerLinksExtras, footerLinksGeneral } from "@/constant/component";
+
 import Github from "./icons/Github";
+import Instagram from "./icons/Instagram";
+import Linkedin from "./icons/Linkedin";
+import Mail from "./icons/Mail";
 
 export default function Footer() {
   return (
@@ -14,27 +18,31 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <p className="text-base font-semibold">General</p>
             <div className="flex flex-col gap-x-1 text-base font-medium">
-              <Link href="/">Home</Link>
-              <Link href="/portfolio">Portfolio</Link>
-              <Link href="/blog">Blog</Link>
-              <Link href="/guestbook">Guestbook</Link>
+              {footerLinksGeneral.map((item: any, key: number) => (
+                <Link
+                  key={key}
+                  href={item.href}
+                  target={""}
+                  className="text-muted-foreground hover:text-secondary-foreground hover:underline hover:transition-all"
+                >
+                  {item.title}
+                </Link>
+              ))}
             </div>
           </div>
           <div className="flex flex-col gap-3">
             <p className="text-base font-semibold">Extras</p>
             <div className="grid grid-rows-4 grid-flow-col gap-y-1 gap-x-3 text-base font-medium">
-              <Link href="https://mgkusumaputra.my.id/CV" target="_blank">
-                Resume
-              </Link>
-              {/* <Link href="/snippets">Snippets</Link>
-              <Link href="/uses">Uses</Link> */}
-              <Link href="/certificate">Certificate</Link>
-              <Link
-                href="https://mgkusumaputra.my.id/LearnLagoon"
-                target="_blank"
-              >
-                Learning Materials
-              </Link>
+              {footerLinksExtras.map((item: any, key: number) => (
+                <Link
+                  key={key}
+                  href={item.href}
+                  target={item.target}
+                  className="text-muted-foreground hover:text-secondary-foreground hover:underline hover:transition-all"
+                >
+                  {item.title}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

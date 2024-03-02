@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 
 import { ThemeToggle } from "@/components/ui/themeToggle";
 
+import { navbarLinks } from "@/constant/component";
+
 export default function Navbar() {
   let pathname = usePathname() || "/";
 
@@ -15,54 +17,20 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between mb-12 text-base font-medium">
       <ul className="flex items-center gap-x-3">
-        <li>
-          <Link
-            href="/"
-            className={`relative pb-px ${
-              pathname === "/"
-                ? "text-secondary-foreground"
-                : "text-muted-foreground"
-            }`}
-          >
-            <p>Home</p>
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/portfolio"
-            className={`relative pb-px ${
-              pathname === "/portfolio"
-                ? "text-secondary-foreground"
-                : "text-muted-foreground"
-            }`}
-          >
-            Portfolio
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/blog"
-            className={`relative pb-px ${
-              pathname === "/blog"
-                ? "text-secondary-foreground"
-                : "text-muted-foreground"
-            }`}
-          >
-            Blog
-          </Link>
-        </li>
-        <li>
-          <Link
-            href="/guestbook"
-            className={`relative pb-px ${
-              pathname === "/guestbook"
-                ? "text-secondary-foreground"
-                : "text-muted-foreground"
-            }`}
-          >
-            Guestbook
-          </Link>
-        </li>
+        {navbarLinks.map((item: any, key: number) => (
+          <li key={key}>
+            <Link
+              href={item.href}
+              className={`relative pb-px ${
+                pathname === item.href
+                  ? "text-secondary-foreground"
+                  : "text-muted-foreground"
+              }`}
+            >
+              <p>{item.title}</p>
+            </Link>
+          </li>
+        ))}
       </ul>
       <ThemeToggle />
     </nav>
