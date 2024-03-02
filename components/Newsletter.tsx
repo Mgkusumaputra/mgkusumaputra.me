@@ -14,20 +14,23 @@ export default function Newsletter() {
   async function handleSubmit(formData: FormData) {
     const email = formData.get("email");
 
-    const res = await fetch("/api/subs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const res = await fetch(
+      "/api/subs?API-KEY=3d72601863e75a1747e1f38f088183c25c88460a8373622f536ee322d3403479",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
       },
-      body: JSON.stringify({ email }),
-    });
+    );
 
     const data = await res.json();
 
     if (data.error) {
       toast({
         variant: "destructive",
-        description: "You're already added to newsletter",
+        description: `${data.error.title}`,
       });
       console.log(data.error);
       return;
