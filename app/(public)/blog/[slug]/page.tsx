@@ -18,7 +18,6 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
-  console.log(slug);
   const postData = await reader.collections.blog.read(slug);
 
   if (!postData) {
