@@ -21,9 +21,9 @@ export default function Navbar() {
           <li key={key}>
             <Link
               href={item.href}
-              className={`relative pb-px ${
+              className={`relative pb-px hover:text-secondary-foreground hover:underline hover:underline-offset-4 hover:transition-all ${
                 pathname === item.href
-                  ? "text-secondary-foreground"
+                  ? "text-secondary-foreground underline underline-offset-4"
                   : "text-muted-foreground"
               }`}
             >
