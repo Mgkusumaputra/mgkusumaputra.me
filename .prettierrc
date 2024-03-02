@@ -7,7 +7,8 @@
     "^@/components/ui(.*)$",
     "^@/constant(.*)$",
     "^@/icons/(.*)$",
-    "^@/keystatic/(.*)$",
+    "^@radix-ui/(.*)$",
+    "^lucide-react/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

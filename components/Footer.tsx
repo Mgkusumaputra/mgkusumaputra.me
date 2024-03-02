@@ -1,13 +1,15 @@
+import { MailIcon } from "lucide-react";
 import React from "react";
 
 import Link from "next/link";
 
 import { footerLinksExtras, footerLinksGeneral } from "@/constant/component";
 
-import Github from "./icons/Github";
-import Instagram from "./icons/Instagram";
-import Linkedin from "./icons/Linkedin";
-import Mail from "./icons/Mail";
+import {
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+} from "@radix-ui/react-icons";
 
 export default function Footer() {
   return (
@@ -52,28 +54,28 @@ export default function Footer() {
             target="_blank"
             className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
-            <Mail />
+            <MailIcon className="w-5 h-5" />
           </Link>
           <Link
             href="https://linkedin.com/in/mgkusumaputra"
             target="_blank"
             className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
-            <Linkedin />
+            <LinkedInLogoIcon className="w-5 h-5" />
           </Link>
           <Link
             href="https://github.com/mgkusumaputra"
             target="_blank"
             className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
-            <Github />
+            <GitHubLogoIcon className="w-5 h-5" />
           </Link>
           <Link
             href="https://instagram.com/mgkusumaputra"
             target="_blank"
             className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
-            <Instagram />
+            <InstagramLogoIcon className="w-5 h-5" />
           </Link>
         </div>
       </div>

@@ -1,12 +1,14 @@
+import { reader } from "@/keystatic/reader";
+import { InstagramIcon, MailIcon } from "lucide-react";
+
 import Image from "next/image";
 import Link from "next/link";
 
-import Github from "@/icons/Github";
-import Instagram from "@/icons/Instagram";
-import Linkedin from "@/icons/Linkedin";
-import Mail from "@/icons/Mail";
-
-import { reader } from "@/keystatic/reader";
+import {
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+} from "@radix-ui/react-icons";
 
 export default async function Header() {
   const headingText = await reader.singletons.aboutme.read();
@@ -32,30 +34,30 @@ export default async function Header() {
         <Link
           href="mailto:contact@mgkusumaputra.me"
           target="_blank"
-          className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
+          className="text-muted-foreground transition-colors hover:text-primary"
         >
-          <Mail />
+          <MailIcon className="w-5 h-5" />
         </Link>
         <Link
           href="https://linkedin.com/in/mgkusumaputra"
           target="_blank"
-          className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
+          className="text-muted-foreground transition-colors hover:text-primary"
         >
-          <Linkedin />
+          <LinkedInLogoIcon className="w-5 h-5" />
         </Link>
         <Link
           href="https://github.com/mgkusumaputra"
           target="_blank"
-          className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
+          className="text-muted-foreground transition-colors hover:text-primary"
         >
-          <Github />
+          <GitHubLogoIcon className="w-5 h-5" />
         </Link>
         <Link
           href="https://instagram.com/mgkusumaputra"
           target="_blank"
-          className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
+          className="text-muted-foreground transition-colors hover:text-primary "
         >
-          <Instagram />
+          <InstagramIcon className="w-5 h-5" />
         </Link>
       </div>
     </div>
