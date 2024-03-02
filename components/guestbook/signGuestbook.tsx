@@ -71,7 +71,7 @@ export function SignGuestbookNotLogedIn() {
       <div className="">
         <Button
           onClick={() => signIn("github")}
-          className="px-3 py-1 gap-2 bg-primary text-primary-foreground rounded-md"
+          className="px-3 py-1 gap-2 bg-primary text-muted-foreground rounded-md"
         >
           <Github className="w-5 h-5" /> Login With Github
         </Button>
