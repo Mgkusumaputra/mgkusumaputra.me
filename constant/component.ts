@@ -13,7 +13,12 @@ export const footerLinksGeneral = [
 ];
 
 export const footerLinksExtras = [
-  { href: "https://mgkusumaputra.my.id/CV", title: "Resume", target: "_blank" },
+  {
+    href: "https://mgkusumaputra.my.id/CV",
+    title: "Resume",
+    target: "_blank",
+    dataUmamiEvent: "Resume Button",
+  },
   //   { href: "/snippets", title: "Snippets", target: "" },
   //   { href: "/uses", title: "Uses", target: "" },
   { href: "/certificate", title: "Certificate", target: "" },
@@ -21,5 +26,6 @@ export const footerLinksExtras = [
     href: "https://mgkusumaputra.my.id/LearnLagoon",
     title: "Learning Materials",
     target: "_blank",
+    dataUmamiEvent: "Learning Materials Button",
   },
 ];

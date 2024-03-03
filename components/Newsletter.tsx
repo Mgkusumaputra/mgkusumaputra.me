@@ -77,6 +77,7 @@ export default function Newsletter() {
             <Button
               type="submit"
               className="px-3 py-1 bg-primary text-primary-foreground rounded-md"
+              data-umami-event="Newsletter Subscribe"
             >
               Subscribe
             </Button>

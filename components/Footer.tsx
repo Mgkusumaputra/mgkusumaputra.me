@@ -41,6 +41,7 @@ export default function Footer() {
                   href={item.href}
                   target={item.target}
                   className="text-muted-foreground hover:text-secondary-foreground hover:underline hover:transition-all"
+                  data-umami-event={item?.dataUmamiEvent}
                 >
                   {item.title}
                 </Link>

@@ -1,3 +1,4 @@
+import { UmamiScript } from "@/components/umamiScript";
 import type { Metadata } from "next";
 
 import { Plus_Jakarta_Sans } from "next/font/google";
@@ -51,6 +52,7 @@ export default function RootLayout({
         className={`${plusJakartaSans.className} antialiased bg-background text-secondary-foreground `}
       >
         <main>{children}</main>
+        <UmamiScript />
       </body>
     </html>
   );

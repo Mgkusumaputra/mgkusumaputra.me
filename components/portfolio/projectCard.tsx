@@ -23,6 +23,7 @@ export default function ProjectCard({
       className="group w-full sm:w-auto flex flex-col gap-3 px-3 py-6 rounded-md transition-colors hover:bg-secondary"
       href={redirect}
       target="_blank"
+      data-umami-event={projectURL}
     >
       <Image
         src={image}
