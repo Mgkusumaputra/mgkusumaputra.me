@@ -8,7 +8,7 @@ interface postCardProps {
   title: string;
   description?: string;
   date: string;
-  views: number;
+  views?: number;
 }
 
 export default function PostCard({
@@ -30,10 +30,10 @@ export default function PostCard({
             <Clock1 className="w-3 h-3 mr-1" />
             <p className="text-xs font-normal">{date}</p>
           </div>
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <EyeIcon className="w-3 h-3 mr-1" />
             <p className="text-xs font-normal">{views}</p>
-          </div>
+          </div> */}
         </div>
       </div>
       <ArrowUpRightIcon className="group-hover:text-secondary w-6 h-6 dark:group-hover:text-secondary-foreground" />
