@@ -1,8 +1,7 @@
+import { CalendarIcon, EyeIcon } from "lucide-react";
+
 import Image from "next/image";
 import Link from "next/link";
-
-import Eye from "@/icons/Eye";
-import Calendar from "../icons/Calendar";
 
 interface blogPostCardProps {
   href: string;
@@ -40,11 +39,11 @@ export default function BlogPostCard({
         </div>
         <div className="flex flex-row gap-2 text-text-secondary">
           <div className="flex items-center">
-            <Calendar className="w-4 h-4 mr-1" />
+            <CalendarIcon className="w-3 h-3 mr-1" />
             <p className="text-xs font-normal">{date}</p>
           </div>
           <div className="flex items-center">
-            <Eye className="w-4 h-4 mr-1" />
+            <EyeIcon className="w-3 h-3 mr-1" />
             <p className="text-xs font-normal">{views}</p>
           </div>
         </div>

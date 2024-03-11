@@ -1,13 +1,14 @@
+import { reader } from "@/keystatic/reader";
+import { InstagramIcon, MailIcon } from "lucide-react";
+
 import Image from "next/image";
 import Link from "next/link";
 
-import Mail from "@/icons/Mail";
-import Linkedin from "@/icons/Linkedin";
-import Github from "@/icons/Github";
-import Instagram from "@/icons/Instagram";
-
-import { reader } from "@/keystatic/reader";
-import { DocumentRenderer } from "@/keystatic/document-renderer";
+import {
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+} from "@radix-ui/react-icons";
 
 export default async function Header() {
   const headingText = await reader.singletons.aboutme.read();
@@ -17,46 +18,46 @@ export default async function Header() {
         src="https://res.cloudinary.com/dspkhqhkv/image/upload/v1692420871/mgkusumaputra.me/profile_pict.jpg"
         width={64}
         height={64}
-        alt="Profile Picture"
+        alt="profile picture"
         className="rounded-full"
       />
       <h1 className="text-4xl font-semibold">
         Hi, I’m <span className="text-primary">Muhammad Garuda</span> 👋
       </h1>
-      <p className="text-base font-normal">
+      <p className="text-base font-normal dark:text-muted-foreground">
         {headingText?.slot1}
       </p>
-      <p className="text-base font-normal">
+      <p className="text-base font-normal dark:text-muted-foreground">
         {headingText?.slot2}
       </p>
       <div className="flex mt-2 gap-x-2">
         <Link
           href="mailto:contact@mgkusumaputra.me"
           target="_blank"
-          className="text-secondary transition-colors hover:text-primary w-8 h-8"
+          className="text-muted-foreground transition-colors hover:text-primary"
         >
-          <Mail />
+          <MailIcon className="w-5 h-5" />
         </Link>
         <Link
           href="https://linkedin.com/in/mgkusumaputra"
           target="_blank"
-          className="text-secondary transition-colors hover:text-primary w-8 h-8"
+          className="text-muted-foreground transition-colors hover:text-primary"
         >
-          <Linkedin />
+          <LinkedInLogoIcon className="w-5 h-5" />
         </Link>
         <Link
           href="https://github.com/mgkusumaputra"
           target="_blank"
-          className="text-secondary transition-colors hover:text-primary w-8 h-8"
+          className="text-muted-foreground transition-colors hover:text-primary"
         >
-          <Github />
+          <GitHubLogoIcon className="w-5 h-5" />
         </Link>
         <Link
           href="https://instagram.com/mgkusumaputra"
           target="_blank"
-          className="text-secondary transition-colors hover:text-primary w-8 h-8"
+          className="text-muted-foreground transition-colors hover:text-primary "
         >
-          <Instagram />
+          <InstagramIcon className="w-5 h-5" />
         </Link>
       </div>
     </div>

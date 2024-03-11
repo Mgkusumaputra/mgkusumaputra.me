@@ -1,8 +1,11 @@
 "use client";
 
-import { LayoutGroup, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import { ThemeToggle } from "@/components/ui/themeToggle";
+
+import { navbarLinks } from "@/constant/component";
 
 export default function Navbar() {
   let pathname = usePathname() || "/";
@@ -12,99 +15,24 @@ export default function Navbar() {
   }
 
   return (
-    <LayoutGroup id="navbar">
-      <nav className="mb-12 text-base font-medium">
-        <ul className="flex items-center gap-x-3">
-          <li>
+    <nav className="flex items-center justify-between mb-12 text-base font-medium">
+      <ul className="flex items-center gap-x-3">
+        {navbarLinks.map((item: any, key: number) => (
+          <li key={key}>
             <Link
-              href="/"
-              className={`relative pb-px${
-                pathname === "/"
-                  ? "text-text-primary transition"
-                  : "text-inactive"
+              href={item.href}
+              className={`relative pb-px hover:text-secondary-foreground hover:underline hover:underline-offset-4 hover:transition-all ${
+                pathname === item.href
+                  ? "text-secondary-foreground underline underline-offset-4"
+                  : "text-muted-foreground"
               }`}
             >
-              Home
-              {pathname === "/" && (
-                <motion.div
-                  transition={{
-                    type: "keyframes",
-                    duration: 0.25,
-                  }}
-                  layoutId="navbar"
-                  className="absolute inset-x-0 h-px bottom-0 bg-gradient-to-l from-gray-200 via-gray-400 to-gray-600"
-                ></motion.div>
-              )}
+              <p>{item.title}</p>
             </Link>
           </li>
-          <li>
-            <Link
-              href="/portfolio"
-              className={`relative pb-px${
-                pathname === "/portfolio"
-                  ? "text-text-primary transition"
-                  : "text-inactive"
-              }`}
-            >
-              Portfolio
-              {pathname === "/portfolio" && (
-                <motion.div
-                  transition={{
-                    type: "keyframes",
-                    duration: 0.25,
-                  }}
-                  layoutId="navbar"
-                  className="absolute inset-x-0 h-px bottom-0 bg-gradient-to-l from-gray-200 via-gray-400 to-gray-600"
-                ></motion.div>
-              )}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/blog"
-              className={`relative pb-px${
-                pathname === "/blog"
-                  ? "text-text-primary transition"
-                  : "text-inactive"
-              }`}
-            >
-              Blog
-              {pathname === "/blog" && (
-                <motion.div
-                  transition={{
-                    type: "keyframes",
-                    duration: 0.25,
-                  }}
-                  layoutId="navbar"
-                  className="absolute inset-x-0 h-px bottom-0 bg-gradient-to-l from-gray-200 via-gray-400 to-gray-600"
-                ></motion.div>
-              )}
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/guestbook"
-              className={`relative pb-px${
-                pathname === "/guestbook"
-                  ? "text-text-primary transition"
-                  : "text-inactive"
-              }`}
-            >
-              Guestbook
-              {pathname === "/guestbook" && (
-                <motion.div
-                  transition={{
-                    type: "keyframes",
-                    duration: 0.25,
-                  }}
-                  layoutId="navbar"
-                  className="absolute inset-x-0 h-px bottom-0 bg-gradient-to-l from-gray-200 via-gray-400 to-gray-600"
-                ></motion.div>
-              )}
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </LayoutGroup>
+        ))}
+      </ul>
+      <ThemeToggle />
+    </nav>
   );
 }

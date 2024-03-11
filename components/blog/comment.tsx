@@ -1,8 +1,11 @@
 "use client";
 
 import Giscus from "@giscus/react";
+import { useTheme } from "next-themes";
 
 export default function Comment() {
+  const { theme } = useTheme();
+
   return (
     <Giscus
       repo="mgkusumaputra/mgkusumaputra.me"
@@ -10,7 +13,7 @@ export default function Comment() {
       category="Comments"
       categoryId="DIC_kwDOKI25r84CZsdb"
       mapping="pathname"
-      theme="light"
+      theme={theme === "dark" ? "dark_protanopia" : "light_protanopia"}
       strict="0"
       reactionsEnabled="1"
       emitMetadata="0"

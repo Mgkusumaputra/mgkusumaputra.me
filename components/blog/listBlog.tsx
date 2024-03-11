@@ -33,15 +33,17 @@ export default function ListBlog({
   const isFilter = useMemo(
     () =>
       datas?.filter((val) => (!filter ? val : val?.entry?.category == filter)),
-    [datas, filter]
+    [datas, filter],
   );
   return (
     <div className="flex flex-col gap-12">
       <div className="flex flex-col gap-4">
-        <h1 className="text-2xl font-semibold">Things I’ve Explored</h1>
+        <h1 className="text-2xl font-semibold">
+          Diving into My Blogging Journey
+        </h1>
         <p className="text-sm font-normal">
-          Discover my world of exploration and creativity. This portfolio is a
-          celebration of my passions, adventures, and the joy of discovery.
+          From classroom insights to software engineering. Join my journey
+          exploring theory to practice in this evolving field.
         </p>
         <div className="flex items-center gap-5 text-sm font-medium">
           <p>Filter</p>
@@ -52,10 +54,12 @@ export default function ListBlog({
                 <button
                   key={id}
                   onClick={() => setFiter(!actived ? item?.category : "")}
-                  className={`py-[2px] capitalize px-1 rounded hover:bg-primary transition-colors ${
-                    actived ? "bg-primary" : "bg-secondary "
+                  className={`py-[2px] capitalize px-1 rounded hover:bg-primary transition-colors text-muted-foreground ${
+                    actived
+                      ? "bg-primary text-secondary-foreground"
+                      : "bg-secondary"
                   }`}
-                > 
+                >
                   {item?.category}
                 </button>
               );

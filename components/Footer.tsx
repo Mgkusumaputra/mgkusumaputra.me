@@ -1,9 +1,15 @@
-import Link from "next/link";
+import { MailIcon } from "lucide-react";
 import React from "react";
-import Mail from "./icons/Mail";
-import Linkedin from "./icons/Linkedin";
-import Instagram from "./icons/Instagram";
-import Github from "./icons/Github";
+
+import Link from "next/link";
+
+import { footerLinksExtras, footerLinksGeneral } from "@/constant/component";
+
+import {
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+} from "@radix-ui/react-icons";
 
 export default function Footer() {
   return (
@@ -14,22 +20,32 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             <p className="text-base font-semibold">General</p>
             <div className="flex flex-col gap-x-1 text-base font-medium">
-              <Link href="/">Home</Link>
-              <Link href="/portfolio">Portfolio</Link>
-              <Link href="/blog">Blog</Link>
-              <Link href="/guestbook">Guestbook</Link>
+              {footerLinksGeneral.map((item: any, key: number) => (
+                <Link
+                  key={key}
+                  href={item.href}
+                  target={""}
+                  className="text-muted-foreground hover:text-secondary-foreground hover:underline hover:transition-all"
+                >
+                  {item.title}
+                </Link>
+              ))}
             </div>
           </div>
           <div className="flex flex-col gap-3">
             <p className="text-base font-semibold">Extras</p>
             <div className="grid grid-rows-4 grid-flow-col gap-y-1 gap-x-3 text-base font-medium">
-              <Link href="https://mgkusumaputra.my.id/CV" target="_blank">Resume</Link>
-              {/* <Link href="/snippets">Snippets</Link>
-              <Link href="/uses">Uses</Link> */}
-              <Link href="/certificate">Certificate</Link>
-              <Link href="https://mgkusumaputra.my.id/LearnLagoon" target="_blank">
-                Learning Materials
-              </Link>
+              {footerLinksExtras.map((item: any, key: number) => (
+                <Link
+                  key={key}
+                  href={item.href}
+                  target={item.target}
+                  className="text-muted-foreground hover:text-secondary-foreground hover:underline hover:transition-all"
+                  data-umami-event={item?.dataUmamiEvent}
+                >
+                  {item.title}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -37,38 +53,38 @@ export default function Footer() {
           <Link
             href="mailto:contact@mgkusumaputra.me"
             target="_blank"
-            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+            className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
-            <Mail />
+            <MailIcon className="w-5 h-5" />
           </Link>
           <Link
             href="https://linkedin.com/in/mgkusumaputra"
             target="_blank"
-            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+            className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
-            <Linkedin />
+            <LinkedInLogoIcon className="w-5 h-5" />
           </Link>
           <Link
             href="https://github.com/mgkusumaputra"
             target="_blank"
-            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+            className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
-            <Github />
+            <GitHubLogoIcon className="w-5 h-5" />
           </Link>
           <Link
             href="https://instagram.com/mgkusumaputra"
             target="_blank"
-            className="text-inactive transition-colors hover:text-text-primary w-8 h-8"
+            className="text-muted-foreground transition-colors hover:text-primary w-8 h-8"
           >
-            <Instagram />
+            <InstagramLogoIcon className="w-5 h-5" />
           </Link>
         </div>
       </div>
       <div className="flex flex-col gap-1 mt-6 text-sm">
-        <p className="font-semibold text-text-primary">
+        <p className="font-semibold text-muted-foreground">
           © {new Date().getFullYear()} Muhammad Garuda. All rights reserved.
         </p>
-        <p className="font-semibold text-inactive">
+        <p className="font-semibold text-muted-foreground">
           Created with{" "}
           <span>
             <Link
@@ -86,6 +102,14 @@ export default function Footer() {
             className="text-primary"
           >
             Tailwind
+          </Link>
+          ,{" "}
+          <Link
+            href="https://ui.shadcn.com/"
+            target="_blank"
+            className="text-primary"
+          >
+            Shadcn/ui
           </Link>
           , and 💖
         </p>
