@@ -77,7 +77,7 @@ export default function ListBlog({
               cover={entry?.coverImage}
               description={entry?.description}
               date={formatDate(entry?.publishedAt)}
-              views={100}
+              // views={100}
             />
           );
         })}

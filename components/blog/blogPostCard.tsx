@@ -9,7 +9,7 @@ interface blogPostCardProps {
   cover: string;
   description?: string;
   date: string;
-  views: number;
+  views?: number;
 }
 
 export default function BlogPostCard({
@@ -42,10 +42,10 @@ export default function BlogPostCard({
             <CalendarIcon className="w-3 h-3 mr-1" />
             <p className="text-xs font-normal">{date}</p>
           </div>
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <EyeIcon className="w-3 h-3 mr-1" />
             <p className="text-xs font-normal">{views}</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </Link>
