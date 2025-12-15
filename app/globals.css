@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* :root {
+  --light-primary-background: #fbfcfd;
+  --light-primary-foreground: #eaf0f6;
+  --light-text-primary: #0e0e0d;
+  --light-text-secondary: #4c4b4a;
+  --dark-primary-background: #2f2f2d;
+  --dark-primary-foreground: #4d4d4c;
+  --dark-text-primary: #fefefc;
+  --dark-text-secondary: #c1c1c0;
+} */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* @theme {
+  --color-light-primary-background: #fbfcfd;
+  --color-light-primary-foreground: #eaf0f6;
+  --color-light-text-primary: #0e0e0d;
+  --color-light-text-secondary: #4c4b4a;
+
+  --color-dark-primary-background: #2f2f2d;
+  --color-dark-primary-foreground: #4d4d4c;
+  --color-dark-text-primary: #fefefc;
+  --color-dark-text-secondary: #c1c1c0;
+} */
+
+/* @layer base {
+  :root {
+    --background: #fbfcfd;
+    --foreground: #eaf0f6;
+    --primary: #0e0e0d;
+    --secondary: #4c4b4a;
+  }
+
+  .dark {
+    --background: #2f2f2d;
+    --foreground: #4d4d4c;
+    --primary: #fefefc;
+    --secondary: #c1c1c0;
+  }
+} */
+@layer base {
+  :root {
+    --background: oklch(0.9906 0.0017 247.84);
+    --foreground: oklch(0.9523 0.0103 247.93);
+    --primary: oklch(0.1633 0.0021 106.63);
+    --secondary: oklch(0.4134 0.0021 67.77);
+  }
+
+  .dark {
+    --background: oklch(0.3045 0.0035 106.61);
+    --foreground: oklch(0.4199 0.0016 106.47);
+    --primary: oklch(0.9965 0.0026 106.45);
+    --secondary: oklch(0.8106 0.0014 106.43);
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --font-display: var(--font-plus-jakarta-sans);
+  --font-body: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  /* * {
+    @apply border-border outline-ring/50;
+  } */
+  /* body {
+    @apply bg-background text-foreground;
+  } */
+  body {
+    @apply bg-background text-primary font-body;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
