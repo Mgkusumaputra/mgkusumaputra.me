@@ -1,44 +1,7 @@
 @import "tailwindcss";
 
-/* :root {
-  --light-primary-background: #fbfcfd;
-  --light-primary-foreground: #eaf0f6;
-  --light-text-primary: #0e0e0d;
-  --light-text-secondary: #4c4b4a;
-  --dark-primary-background: #2f2f2d;
-  --dark-primary-foreground: #4d4d4c;
-  --dark-text-primary: #fefefc;
-  --dark-text-secondary: #c1c1c0;
-} */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* @theme {
-  --color-light-primary-background: #fbfcfd;
-  --color-light-primary-foreground: #eaf0f6;
-  --color-light-text-primary: #0e0e0d;
-  --color-light-text-secondary: #4c4b4a;
-
-  --color-dark-primary-background: #2f2f2d;
-  --color-dark-primary-foreground: #4d4d4c;
-  --color-dark-text-primary: #fefefc;
-  --color-dark-text-secondary: #c1c1c0;
-} */
-
-/* @layer base {
-  :root {
-    --background: #fbfcfd;
-    --foreground: #eaf0f6;
-    --primary: #0e0e0d;
-    --secondary: #4c4b4a;
-  }
-
-  .dark {
-    --background: #2f2f2d;
-    --foreground: #4d4d4c;
-    --primary: #fefefc;
-    --secondary: #c1c1c0;
-  }
-} */
 @layer base {
   :root {
     --background: oklch(0.9906 0.0017 247.84);
@@ -65,12 +28,6 @@
 }
 
 @layer base {
-  /* * {
-    @apply border-border outline-ring/50;
-  } */
-  /* body {
-    @apply bg-background text-foreground;
-  } */
   body {
     @apply bg-background text-primary font-body;
   }
