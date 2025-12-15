@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Caveat, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/themeProvider";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import { cn } from "@/lib/utils";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -11,6 +13,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
 });
 
@@ -27,7 +34,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`w-full max-w-3xl mx-auto ${plusJakartaSans.variable} ${inter.variable} antialiased`}
+        className={cn(
+          `w-full max-w-3xl mx-auto antialiased`,
+          "selection:bg-foreground/65",
+          "scrollbar",
+          `${plusJakartaSans.variable} ${inter.variable} ${caveat.variable}`
+        )}
       >
         <ThemeProvider
           attribute="class"
@@ -37,6 +49,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
