@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import CLink from "@/components/cLink";
@@ -5,8 +6,36 @@ import Newsletter from "@/components/home/newsletter";
 import { ProjectCard } from "@/components/mdx/project";
 import ProjectsMDX from "@/content/projects.mdx";
 import BioMDX from "@/content/home.mdx";
+import { useRef, useState, useEffect } from "react";
 
 import { CodeXml, NotebookPen } from "lucide-react";
+
+function RecentProjects() {
+  const projectsRef = useRef<any[]>([]);
+  const [recentProjects, setRecentProjects] = useState<any[]>([]);
+
+  const CustomProject = (props: any) => {
+    if (!projectsRef.current.some((p) => p.title === props.title)) {
+      projectsRef.current.push(props);
+    }
+    return null;
+  };
+
+  useEffect(() => {
+    setRecentProjects(projectsRef.current.slice(-3).reverse());
+  }, []);
+
+  return (
+    <>
+      <div>
+        <ProjectsMDX components={{ Project: CustomProject }} />
+      </div>
+      {recentProjects.map((props, index) => (
+        <ProjectCard key={index} {...props} />
+      ))}
+    </>
+  );
+}
 
 export default function Home() {
   return (
@@ -51,7 +80,7 @@ export default function Home() {
           </h2>
         </span>
         <div className="flex flex-col gap-4.5 ">
-          <ProjectsMDX components={{ Project: ProjectCard }} />
+          <RecentProjects />
         </div>
         <span className="flex items-center justify-end gap-1.5 mt-3 italic text-secondary">
           <CodeXml className="w-4 h-4" />
@@ -86,7 +115,7 @@ export default function Home() {
         <span className="flex items-center justify-end gap-1.5 mt-3 italic text-secondary">
           <NotebookPen className="w-4 h-4" />
           <CLink
-            href="/blog"
+            href="/writing"
             value="see other writings"
             className="text-base"
             inPage
