@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export function ExperienceItem({
   logo,
@@ -57,7 +58,13 @@ export const experience = {
 
   li: ({ children }: { children: ReactNode }) => (
     <li className="flex items-start gap-2">
-      <span className="mt-1.5 size-1.5 rounded-full  bg-radial from-[#4C4B4A] from-0% to-[#2E2D2C] to-90%" />
+      <span
+        className={cn(
+          "mt-1.5 size-1.5 rounded-full bg-radial",
+          "from-[#4C4B4A] from-0% to-[#2E2D2C] to-90%",
+          "dark:from-[#C1C1C0] dark:from-0% dark:to-[#D2D1D0] dark:to-90%"
+        )}
+      />
       <p className="w-full">{children}</p>
     </li>
   ),
