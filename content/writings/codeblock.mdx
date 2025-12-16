@@ -1,0 +1,46 @@
+---
+title: "Codeblock Testing"
+date: "08-12-2025"
+description: "First post from my writings"
+published: true
+---
+
+```ts title="sum.ts" {1}
+export function sum(a: number, b: number) {
+  return a + b;
+}
+```
+
+```ts
+export function calculateTotal(items: number[]) {
+  const subtotal = items.reduce((a, b) => a + b, 0);
+  const tax = subtotal * 0.1;
+  const total = subtotal + tax;
+  return total;
+}
+```
+
+```diff
+-export function login(user) {
+-  return api.login(user)
+-}
++export async function login(user) {
++  return await api.login(user)
++}
+```
+
+```tsx title="sum.ts"
+import { useEffect, useState } from "react";
+
+export default function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("mounted");
+    return () => console.log("unmounted");
+  }, []);
+
+  return <button onClick={() => setCount((c) => c + 1)}>Count: {count}</button>;
+}
+```
+

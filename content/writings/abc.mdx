@@ -1,0 +1,81 @@
+---
+title: "How i make my website"
+date: "08-12-2025"
+description: "First post from my writings"
+published: true
+---
+
+# Welcome to My Blog
+
+This is my very first post written in **MDX**! MDX allows you to write Markdown while embedding React components for dynamic content.
+
+Here’s an example of a styled button:
+
+And here’s some code for good measure:
+
+`console.log("Hello, world!")`
+
+Isn’t this amazing? You can mix static content with interactive elements effortlessly.
+
+### `app/globals.css`
+
+```css
+[data-rehype-pretty-code-fragment] {
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+[data-rehype-pretty-code-title] {
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid hsl(0 0% 20%);
+  background: hsl(0 0% 12%);
+  color: hsl(0 0% 70%);
+  font-family: var(--font-mono);
+}
+```
+
+```tsx filename=useToggle.ts {2}
+import { useState } from "react";
+export function useToggle(init = false) {
+  const [v, set] = useState(init);
+  return [v, () => set((x) => !x)];
+}
+```
+
+```tsx language=tsx
+// components/Quote.tsx
+import { ReactNode } from "react";
+
+export default function Quote({
+  children,
+  caption,
+  icon = "❝",
+}: {
+  children: ReactNode;
+  caption?: string;
+  icon?: string;
+}) {
+  return (
+    <figure className="my-6 rounded-xl border bg-neutral-50 p-4 dark:bg-neutral-900">
+      <div className="flex gap-3">
+        <span className="select-none text-xl leading-none">{icon}</span>
+        <blockquote className="prose max-w-none italic dark:prose-invert">
+          {children}
+        </blockquote>
+      </div>
+      {caption && (
+        <figcaption className="mt-2 pl-7 text-sm opacity-70">
+          — {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+```
+
+```diff {2}
+- return items.map(x => x)
++ return items.map(x => x.id)
+```
+
