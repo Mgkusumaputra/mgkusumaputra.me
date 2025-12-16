@@ -1,8 +1,11 @@
-import Card from "@/components/card";
+"use client";
+
 import CLink from "@/components/cLink";
 import Newsletter from "@/components/home/newsletter";
-import bio from "@/data/home.json";
-import projects from "@/data/projects.json";
+import { ProjectCard } from "@/components/mdx/project";
+import ProjectsMDX from "@/content/projects.mdx";
+import BioMDX from "@/content/home.mdx";
+
 import { CodeXml, NotebookPen } from "lucide-react";
 
 export default function Home() {
@@ -15,13 +18,10 @@ export default function Home() {
           <span className="w-0.75 h-8 rounded-md bg-foreground" />
           <h1 className="font-display text-2xl font-medium">ガルーダ</h1>
         </div>
-        <div className="flex flex-col gap-3 text-balance">
-          <p className="text-sm text-secondary">{bio["line-1"]}</p>
-          <p className="text-sm text-secondary">{bio["line-2"]}</p>
-          <p className="text-sm text-secondary">
-            Read more <CLink href="" value="about me" className="" />, or you
-            want direct connect? find me below
-          </p>
+        <div className="flex flex-col gap-3 text-balance text-sm text-secondary">
+          <div className="flex flex-col gap-3 prose prose-sm text-balance">
+            <BioMDX />
+          </div>
           <div className="flex flex-wrap gap-1.5 text-primary text-sm max-w-fit">
             <CLink
               href="https://linkedin.com/in/mgkusumaputra/"
@@ -51,17 +51,7 @@ export default function Home() {
           </h2>
         </span>
         <div className="flex flex-col gap-4.5 ">
-          {projects
-            .slice(-3)
-            .reverse()
-            .map((project, index) => (
-              <Card
-                key={index}
-                title={project.title}
-                description={project.description}
-                icon
-              ></Card>
-            ))}
+          <ProjectsMDX components={{ Project: ProjectCard }} />
         </div>
         <span className="flex items-center justify-end gap-1.5 mt-3 italic text-secondary">
           <CodeXml className="w-4 h-4" />
@@ -82,7 +72,7 @@ export default function Home() {
           </h2>
         </span>
         <div className="flex flex-col gap-4.5 ">
-          {projects
+          {/* {projects
             .slice(-3)
             .reverse()
             .map((project, index) => (
@@ -91,7 +81,7 @@ export default function Home() {
                 title={project.title}
                 description={project.description}
               ></Card>
-            ))}
+            ))} */}
         </div>
         <span className="flex items-center justify-end gap-1.5 mt-3 italic text-secondary">
           <NotebookPen className="w-4 h-4" />

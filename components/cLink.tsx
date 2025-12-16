@@ -8,12 +8,14 @@ export default function CLink({
   className,
   inPage = false,
   ariaLabel,
+  disable,
 }: {
   href: string;
   value: string | ReactNode;
   className?: string;
   inPage?: boolean;
   ariaLabel?: string;
+  disable?: boolean;
 }) {
   if (inPage) {
     return (
@@ -21,6 +23,7 @@ export default function CLink({
         className={cn("underline cursor-pointer", className)}
         href={href}
         aria-label={ariaLabel}
+        aria-disabled={disable}
       >
         {value}
       </Link>
