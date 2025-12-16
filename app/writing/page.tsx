@@ -6,7 +6,15 @@ import Link from "next/link";
 export default function Writing() {
   const writings = getAllWritings()
     .filter((post) => post.published)
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+    .sort((a, b) => {
+      const [dayA, monthA, yearA] = a.date.split("-").map(Number);
+      const [dayB, monthB, yearB] = b.date.split("-").map(Number);
+
+      const dateA = new Date(yearA, monthA - 1, dayA).getTime();
+      const dateB = new Date(yearB, monthB - 1, dayB).getTime();
+
+      return dateB - dateA;
+    });
 
   return (
     <main className="flex flex-col px-8 py-15 gap-6">

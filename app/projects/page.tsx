@@ -1,7 +1,7 @@
 "use client";
 
-import ProjectsMDX from "@/content/projects.mdx";
-import { ProjectDescription } from "@/components/mdx/project";
+import { ProjectDescription } from "@/components/projectCard";
+import { projects } from "@/content/projects";
 
 export default function Projects() {
   return (
@@ -9,14 +9,9 @@ export default function Projects() {
       <h1 className="font-hand font-medium text-3xl">My Project Lists</h1>
 
       <div className="flex flex-col gap-3">
-        <ProjectsMDX
-          components={{
-            Project: ProjectDescription,
-            p: ({ children }: { children: React.ReactNode }) => (
-              <span className="inline">{children}</span>
-            ),
-          }}
-        />
+        {projects.map((p, i) => (
+          <ProjectDescription key={i} {...p} />
+        ))}
       </div>
     </main>
   );

@@ -35,18 +35,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
+          "transition-colors duration-300 ease-out",
           `w-full max-w-3xl mx-auto antialiased`,
           "selection:bg-foreground/65",
           "scrollbar",
           `${plusJakartaSans.variable} ${inter.variable} ${caveat.variable}`
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           {children}
           <Footer />

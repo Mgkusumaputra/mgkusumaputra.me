@@ -11,21 +11,16 @@ export type ProjectProps = {
   children?: React.ReactNode;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function Project(_props: ProjectProps) {
-  return null;
-}
-
 export function ProjectDescription({
   title,
   icon,
   link,
-  children,
+  content,
 }: {
   title: string;
-  icon?: string;
+  icon?: string | React.ReactNode;
   link?: string;
-  children?: React.ReactNode;
+  content?: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-3 px-3 py-4.5">
@@ -55,7 +50,7 @@ export function ProjectDescription({
         )}
       </span>
       <div className="prose prose-sm text-base text-secondary max-w-prose ">
-        {children}
+        {content}
       </div>
     </div>
   );
