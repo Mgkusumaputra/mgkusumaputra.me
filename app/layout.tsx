@@ -5,6 +5,7 @@ import { ThemeProvider } from "../components/themeProvider";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { cn } from "@/lib/utils";
+import { ViewTransition } from "react";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -35,7 +36,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "transition-colors duration-300 ease-out",
+          "transition-colors duration-300 ease-out scroll-smooth",
           `w-full max-w-3xl mx-auto antialiased`,
           "selection:bg-foreground/65",
           "scrollbar",
@@ -44,7 +45,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          {children}
+          <ViewTransition name="slow-fade">{children}</ViewTransition>
           <Footer />
         </ThemeProvider>
       </body>

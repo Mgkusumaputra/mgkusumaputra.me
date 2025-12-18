@@ -52,6 +52,42 @@
   }
 }
 
+@keyframes transitionsOpen {
+  0% {
+    mask: linear-gradient(90deg, #000 25%, #000000e6 50%, #00000000) 150% 0 /
+      400% no-repeat;
+    opacity: 0.5;
+  }
+  100% {
+    mask: linear-gradient(90deg, #000 25%, #000000e6 50%, #00000000) 0 / 400%
+      no-repeat;
+    opacity: 1;
+  }
+}
+
+@keyframes transitionsClose {
+  0% {
+    mask: linear-gradient(90deg, #000 25%, #000000e6 50%, #00000000) 0 / 400%
+      no-repeat;
+    opacity: 1;
+  }
+  100% {
+    mask: linear-gradient(90deg, #000 25%, #000000e6 50%, #00000000) 150% 0 /
+      400% no-repeat;
+    opacity: 0.5;
+  }
+}
+
+::view-transition-old(slow-fade) {
+  animation-name: transitionsClose;
+  animation-duration: 1.2s;
+}
+
+::view-transition-new(slow-fade) {
+  animation-name: transitionsOpen;
+  animation-duration: 1.2s;
+}
+
 /* Code block container */
 pre {
   margin: 0;
