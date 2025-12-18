@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Signature } from "./svg/signature";
 import CLink from "./cLink";
 import { Github, Instagram, Linkedin, Mail } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -18,24 +19,51 @@ export default function Footer() {
           <div className="flex flex-col">
             <p className="font-hand font-medium text-2xl">General</p>
             <div className="flex flex-col list-none gap-1.5 mt-3 text-secondary text-sm">
-              <Link className={pathname === "/" ? "italic" : ""} href="/">
+              <Link
+                className={cn(
+                  pathname === "/" ? "italic" : "hover:italic",
+                  "group relative flex items-center w-fit",
+                  "before:pointer-events-none before:absolute before:left-0 before:top-[1.5em] before:h-[0.05em] before:w-full before:bg-current before:content-['']",
+                  "before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
+                  "hover:before:origin-left hover:before:scale-x-100"
+                )}
+                href="/"
+              >
                 Home
               </Link>
               <Link
-                className={pathname === "/about-me" ? "italic" : ""}
+                className={cn(
+                  pathname === "/about-me" ? "italic" : "hover:italic",
+                  "group relative flex items-center w-fit",
+                  "before:pointer-events-none before:absolute before:left-0 before:top-[1.5em] before:h-[0.05em] before:w-full before:bg-current before:content-['']",
+                  "before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
+                  "hover:before:origin-left hover:before:scale-x-100"
+                )}
                 href="/about-me"
               >
                 About me
               </Link>
               <Link
-                className={pathname === "/projects" ? "italic" : ""}
+                className={cn(
+                  pathname === "/projects" ? "italic" : "hover:italic",
+                  "group relative flex items-center w-fit",
+                  "before:pointer-events-none before:absolute before:left-0 before:top-[1.5em] before:h-[0.05em] before:w-full before:bg-current before:content-['']",
+                  "before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
+                  "hover:before:origin-left hover:before:scale-x-100"
+                )}
                 href="/projects"
               >
                 Projects
               </Link>
               <Link
-                className={pathname === "/blog" ? "italic" : ""}
-                href="/blog"
+                className={cn(
+                  pathname === "/writing" ? "italic" : "hover:italic",
+                  "group relative flex items-center w-fit",
+                  "before:pointer-events-none before:absolute before:left-0 before:top-[1.5em] before:h-[0.05em] before:w-full before:bg-current before:content-['']",
+                  "before:origin-right before:scale-x-0 before:transition-transform before:duration-300 before:ease-in-out",
+                  "hover:before:origin-left hover:before:scale-x-100"
+                )}
+                href="/writing"
               >
                 Writing
               </Link>
