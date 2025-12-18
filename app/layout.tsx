@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { cn } from "@/lib/utils";
 import { ViewTransition } from "react";
+import { Analytics } from "@/components/analytics";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -43,6 +44,7 @@ export default function RootLayout({
           `${plusJakartaSans.variable} ${inter.variable} ${caveat.variable}`
         )}
       >
+        <Analytics />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <ViewTransition name="slow-fade">{children}</ViewTransition>
