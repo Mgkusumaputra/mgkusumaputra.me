@@ -4,7 +4,7 @@ import type { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
     const all_writings = getAllWritingStatics().map((writing) => ({
         url: `https://mgkusumaputra.me/writing/${writing.slug}`,
-        lastModified: writing.date,
+        lastModified: new Date(writing.date).toISOString().split("T")[0],
     }))
 
     const all_routes = [
