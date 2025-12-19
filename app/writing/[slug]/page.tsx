@@ -2,8 +2,42 @@ import CLink from "@/components/cLink";
 import MDXRenderer from "@/components/writing/mdxRenderer";
 import { ViewCounter } from "@/components/writing/viewCounter";
 import { getViews } from "@/lib/getViews";
-import { getAllWritings } from "@/lib/writing";
+import { getAllWritings, getAllWritingStatics } from "@/lib/writing";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const writings = getAllWritingStatics();
+  const writing = writings.find((p) => p.slug === slug);
+
+  if (!writing) {
+    return {};
+  }
+
+  return {
+    title: writing.title,
+    description: writing.description,
+    authors: [{ name: "mgkusumaputra" }],
+    openGraph: {
+      title: writing.title,
+      description: writing.description,
+      url: `https://mgkusumaputra.me/writing/${slug}`,
+      siteName: "Muhammad Garuda",
+      locale: "en_US",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: writing.title,
+      description: writing.description,
+    },
+  };
+}
 
 export default async function WritingPost({
   params,
