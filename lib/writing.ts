@@ -3,10 +3,11 @@ import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { FormatDate } from './formatDate'
+import { getViews } from './getViews'
 
 const WRITINGS_PATH = path.join(process.cwd(), 'content/writings')
 
-export function getAllWritings() {
+export function getAllWritingStatics() {
     const files = fs.readdirSync(WRITINGS_PATH)
 
     return files.map(filename => {
@@ -15,6 +16,7 @@ export function getAllWritings() {
         const file = fs.readFileSync(filePath, 'utf8')
 
         const { data, content } = matter(file)
+
 
         return {
             slug,
@@ -26,4 +28,17 @@ export function getAllWritings() {
             content,
         }
     })
+}
+
+export async function getAllWritings() {
+    const writings = getAllWritingStatics()
+
+    const withViews = await Promise.all(
+        writings.map(async post => ({
+            ...post,
+            views: await getViews(post.slug)
+        }))
+    )
+
+    return withViews
 }

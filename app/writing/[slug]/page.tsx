@@ -1,5 +1,7 @@
 import CLink from "@/components/cLink";
 import MDXRenderer from "@/components/writing/mdxRenderer";
+import { ViewCounter } from "@/components/writing/viewCounter";
+import { getViews } from "@/lib/getViews";
 import { getAllWritings } from "@/lib/writing";
 import { notFound } from "next/navigation";
 
@@ -9,8 +11,10 @@ export default async function WritingPost({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const writings = getAllWritings();
+  const writings = await getAllWritings();
   const writing = writings.find((p) => p.slug === slug);
+
+  const views = await getViews(slug);
 
   if (!writing) notFound();
 
@@ -25,7 +29,7 @@ export default async function WritingPost({
             <p>{writing.date}</p>
           </div>
           <div className="flex flex-row gap-1.5">
-            <p>12.980 views</p>
+            <ViewCounter slug={slug} initialViews={views} />
             <span>·</span>
             <p>{writing.readingTime.text}</p>
           </div>
