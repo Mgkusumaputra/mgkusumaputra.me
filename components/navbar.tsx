@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <nav className="p-6 flex justify-between items-center">
       <div className="flex items-center gap-3">
-        {!pathname.startsWith("/writing/") && (
+        {pathname !== "/" && !pathname.startsWith("/writing/") && (
           <Link href="/" aria-label="Go home" className="cursor-pointer">
             <ArrowLeftIcon size={20} />
           </Link>
