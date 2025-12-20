@@ -46,7 +46,11 @@ export default function Image({ params }: { params: { slug: string } }) {
           {writing.title}
         </p>
       </div>
-    )
+    ),
+    {
+      width: 1200,
+      height: 630,
+    }
   );
 }
 
