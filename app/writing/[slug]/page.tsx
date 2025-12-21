@@ -55,13 +55,10 @@ export default async function WritingPost({
   return (
     <main className="flex flex-col px-8 py-15 gap-7.5">
       <div className="flex flex-col gap-4.5">
+        <p className="text-sm text-secondary">{writing.date}</p>
         <h1 className="font-hand font-medium text-4xl">{writing.title}</h1>
         <div className="flex flex-wrap justify-between items-center gap-1.5 text-sm text-secondary">
-          <div className="flex flex-row gap-1.5">
-            <CLink href="" value="@mgkusumaputra" className="no-underline" />
-            <span>|</span>
-            <p>{writing.date}</p>
-          </div>
+          <CLink href="" value="@mgkusumaputra" className="no-underline" />
           <div className="flex flex-row gap-1.5">
             <ViewCounter slug={slug} initialViews={views} />
             <span>·</span>
