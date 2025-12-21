@@ -1,21 +1,44 @@
+import { cn } from "@/lib/utils";
+
 type Props = {
-  type?: "info" | "warning" | "success" | "error";
-  title?: string;
+  color?:
+    | "default"
+    | "gray"
+    | "brown"
+    | "orange"
+    | "yellow"
+    | "green"
+    | "blue"
+    | "purple"
+    | "pink"
+    | "red";
+  icon: string;
   children: React.ReactNode;
 };
 
-const styles = {
-  info: "border-blue-500 bg-blue-50",
-  warning: "border-yellow-500 bg-yellow-50",
-  success: "border-green-500 bg-green-50",
-  error: "border-red-500 bg-red-50",
+const backgroundColor: Record<Exclude<Props["color"], undefined>, string> = {
+  default: "bg-transparent border-2 border-foreground",
+  gray: "bg-notion-gray-surface",
+  brown: "bg-notion-brown-surface",
+  orange: "bg-notion-orange-surface",
+  yellow: "bg-notion-yellow-surface",
+  green: "bg-notion-green-surface",
+  blue: "bg-notion-blue-surface",
+  purple: "bg-notion-purple-surface",
+  pink: "bg-notion-pink-surface",
+  red: "bg-notion-red-surface",
 };
 
-export default function Callout({ type = "info", title, children }: Props) {
+export default function Callout({ color = "default", icon, children }: Props) {
   return (
-    <div className={`border-l-4 p-4 rounded-md ${styles[type]}`}>
-      {title && <p className="font-semibold mb-1">{title}</p>}
-      <div className="text-sm">{children}</div>
+    <div
+      className={cn(
+        "my-1 flex items-start pl-3 py-3 pr-5 rounded-md",
+        backgroundColor[color]
+      )}
+    >
+      <span className="text-base ">{icon}</span>
+      <div className="ml-2 mt-1">{children}</div>
     </div>
   );
 }

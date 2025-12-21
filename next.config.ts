@@ -11,13 +11,41 @@ interface Node {
 }
 
 const options = {
-  theme: "github-dark",
+  theme: {
+    dark: 'github-dark-dimmed',
+    light: 'min-light'
+  },
   keepBackground: false,
   parseMeta: true,
 
   onVisitLine(node: Node) {
+    node.properties = node.properties || {};
+
     if (node.children.length === 0) {
       node.children = [{ type: "text", value: " " }];
+    }
+
+    const getText = (n: any): string => {
+      if (!n) return "";
+      if (typeof n.value === "string") return n.value;
+      if (Array.isArray(n.children)) return n.children.map(getText).join("");
+      return "";
+    };
+
+    const text = getText(node).trimStart();
+
+    if (text.startsWith("+")) {
+      node.properties["data-diff"] = "add";
+      node.properties.className = [
+        ...(node.properties.className ?? []),
+        "diff-add",
+      ];
+    } else if (text.startsWith("-")) {
+      node.properties["data-diff"] = "remove";
+      node.properties.className = [
+        ...(node.properties.className ?? []),
+        "diff-remove",
+      ];
     }
   },
 
@@ -29,14 +57,20 @@ const options = {
     node.properties["data-highlighted-chars"] = "";
   },
 
-  onVisitDiffLine(node: Node) {
-    if (node.properties["data-diff"] === "add") {
-      node.properties.className = ["diff-add"];
-    }
-    if (node.properties["data-diff"] === "remove") {
-      node.properties.className = ["diff-remove"];
-    }
-  },
+  // onVisitDiffLine(node: Node) {
+  //   if (node.properties["data-diff"] === "add") {
+  //     node.properties.className = [
+  //       ...(node.properties.className ?? []),
+  //       "diff-add",
+  //     ];
+  //   }
+  //   if (node.properties["data-diff"] === "remove") {
+  //     node.properties.className = [
+  //       ...(node.properties.className ?? []),
+  //       "diff-remove",
+  //     ];
+  //   }
+  // },
 };
 
 const nextConfig: NextConfig = {

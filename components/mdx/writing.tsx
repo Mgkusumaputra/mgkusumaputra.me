@@ -4,32 +4,38 @@ import CodeBlock from "../writing/codeBlock";
 import Callout from "../writing/callout";
 import Quote from "../writing/quote";
 import Equation from "../writing/equation";
-import Aside from "../writing/aside";
 import { Children, ReactElement } from "react";
 
 export const writingComponents: MDXComponents = {
   h1: (props) => (
-    <h1 className="mt-10 mb-4 text-4xl font-semibold" {...props} />
-  ),
-
-  h2: (props) => <h2 className="mt-8 mb-3 text-2xl font-semibold" {...props} />,
-
-  h3: (props) => <h3 className="mt-6 mb-2 text-xl font-medium" {...props} />,
-
-  p: (props) => (
-    <p
-      className="my-4 leading-7 text-neutral-800 dark:text-neutral-200"
+    <h1
+      className="font-display text-3xl font-semibold text-primary"
       {...props}
     />
   ),
 
-  ul: (props) => <ul className="my-4 list-disc pl-6 space-y-2" {...props} />,
+  h2: (props) => (
+    <h2
+      className="font-display text-2xl font-semibold text-primary"
+      {...props}
+    />
+  ),
 
-  ol: (props) => <ol className="my-4 list-decimal pl-6 space-y-2" {...props} />,
+  h3: (props) => (
+    <h3 className="font-display text-xl font-medium text-primary" {...props} />
+  ),
 
-  blockquote: (props) => (
-    <blockquote
-      className="my-6 border-l-4 border-neutral-300 pl-4 italic text-neutral-600"
+  p: (props) => (
+    <p className="my-4 leading-7 font-body text-secondary" {...props} />
+  ),
+
+  ul: (props) => (
+    <ul className="my-4 list-disc pl-6 space-y-2 text-secondary" {...props} />
+  ),
+
+  ol: (props) => (
+    <ol
+      className="my-4 list-decimal pl-6 space-y-2 text-secondary"
       {...props}
     />
   ),
@@ -38,7 +44,7 @@ export const writingComponents: MDXComponents = {
 
   a: (props) => (
     <a
-      className="underline underline-offset-4 hover:opacity-80"
+      className="underline cursor-pointer"
       target="_blank"
       rel="noopener noreferrer"
       {...props}
@@ -48,7 +54,6 @@ export const writingComponents: MDXComponents = {
   Callout,
   Quote,
   Equation,
-  Aside,
   figure: (props) => {
     if (
       props &&

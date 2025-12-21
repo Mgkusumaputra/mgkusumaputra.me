@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeftIcon } from "./icons/arrowLeftIcon";
+import { ArrowLeftIcon } from "./icons/animated/arrowLeftIcon";
 import { ThemeToggleButton } from "./themeToggle";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";

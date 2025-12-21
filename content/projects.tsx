@@ -1,6 +1,6 @@
 import CLink from "@/components/cLink";
-import ChartLineIcon from "@/components/icons/chartLineIcon";
-import ShieldCheckIcon from "@/components/icons/shieldCheckIcon";
+import ChartLineIcon from "@/components/icons/animated/chartLineIcon";
+import ShieldCheckIcon from "@/components/icons/animated/shieldCheckIcon";
 
 export const projects = [
   {

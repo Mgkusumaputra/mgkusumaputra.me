@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Caveat, Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Caveat, Geist_Mono, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/themeProvider";
 import Navbar from "@/components/navbar";
@@ -20,6 +20,11 @@ const inter = Inter({
 
 const caveat = Caveat({
   variable: "--font-caveat",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -70,7 +75,7 @@ export default function RootLayout({
           `w-full max-w-3xl mx-auto antialiased`,
           "selection:bg-foreground/65",
           "scrollbar",
-          `${plusJakartaSans.variable} ${inter.variable} ${caveat.variable}`
+          `${plusJakartaSans.variable} ${inter.variable} ${caveat.variable} ${geistMono.variable}`
         )}
       >
         <Analytics />

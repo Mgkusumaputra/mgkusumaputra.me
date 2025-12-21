@@ -8,6 +8,26 @@
     --foreground: oklch(0.9523 0.0103 247.93);
     --primary: oklch(0.1633 0.0021 106.63);
     --secondary: oklch(0.4134 0.0021 67.77);
+
+    --notion-gray-text: oklch(0.5463 0.0065 56.93);
+    --notion-brown-text: oklch(0.5644 0.0583 53.59);
+    --notion-orange-text: oklch(0.638 0.1288 57.96);
+    --notion-yellow-text: oklch(0.6746 0.1166 81.48);
+    --notion-green-text: oklch(0.6168 0.0798 158.73);
+    --notion-blue-text: oklch(0.5854 0.1289 251.32);
+    --notion-purple-text: oklch(0.5712 0.1152 303.93);
+    --notion-pink-text: oklch(0.5407 0.1363 343.08);
+    --notion-red-text: oklch(0.6023 0.1448 25.56);
+
+    --notion-gray-surface: oklch(0.9448 0.0024 56.35);
+    --notion-brown-surface: oklch(0.9419 0.0149 53.28);
+    --notion-orange-surface: oklch(0.9471 0.0321 62.69);
+    --notion-yellow-surface: oklch(0.9605 0.0409 93.18);
+    --notion-green-surface: oklch(0.9517 0.0172 157.05);
+    --notion-blue-surface: oklch(0.9568 0.0229 243.33);
+    --notion-purple-surface: oklch(0.9391 0.0261 305.45);
+    --notion-pink-surface: oklch(0.9337 0.0256 342.67);
+    --notion-red-surface: oklch(0.9333 0.028 18.85);
   }
 
   .dark {
@@ -15,6 +35,27 @@
     --foreground: oklch(0.4199 0.0016 106.47);
     --primary: oklch(0.9965 0.0026 106.45);
     --secondary: oklch(0.8106 0.0014 106.43);
+
+    --notion-gray-text: oklch(0.7117 0.0052 56.88);
+    --notion-brown-text: oklch(0.7086 0.0362 53.44);
+    --notion-orange-text: oklch(0.7189 0.0673 57.91);
+    --notion-yellow-text: oklch(0.7975 0.0673 87.74);
+    --notion-green-text: oklch(0.7497 0.0544 160.31);
+    --notion-blue-text: oklch(0.7283 0.0875 251.9);
+    --notion-purple-text: oklch(0.6892 0.083 304.73);
+    --notion-pink-text: oklch(0.6745 0.0788 343.82);
+    --notion-red-text: oklch(0.6903 0.081 24.82);
+
+    /* Notion Dark Mode - Surface Colors */
+    --notion-gray-surface: oklch(0.3457 0.004 56.8);
+    --notion-brown-surface: oklch(0.32 0.0293 53.49);
+    --notion-orange-surface: oklch(0.3413 0.0632 57.59);
+    --notion-yellow-surface: oklch(0.3844 0.0568 82.46);
+    --notion-green-surface: oklch(0.3384 0.0401 158.18);
+    --notion-blue-surface: oklch(0.3181 0.0495 251.45);
+    --notion-purple-surface: oklch(0.301 0.0498 303.95);
+    --notion-pink-surface: oklch(0.2963 0.0468 343.55);
+    --notion-red-surface: oklch(0.3136 0.0551 24.57);
   }
 }
 
@@ -23,14 +64,38 @@
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
+  --color-notion-gray-text: var(--notion-gray-text);
+  --color-notion-brown-text: var(--notion-brown-text);
+  --color-notion-orange-text: var(--notion-orange-text);
+  --color-notion-yellow-text: var(--notion-yellow-text);
+  --color-notion-green-text: var(--notion-green-text);
+  --color-notion-blue-text: var(--notion-blue-text);
+  --color-notion-purple-text: var(--notion-purple-text);
+  --color-notion-pink-text: var(--notion-pink-text);
+  --color-notion-red-text: var(--notion-red-text);
+
+  --color-notion-gray-surface: var(--notion-gray-surface);
+  --color-notion-brown-surface: var(--notion-brown-surface);
+  --color-notion-orange-surface: var(--notion-orange-surface);
+  --color-notion-yellow-surface: var(--notion-yellow-surface);
+  --color-notion-green-surface: var(--notion-green-surface);
+  --color-notion-blue-surface: var(--notion-blue-surface);
+  --color-notion-purple-surface: var(--notion-purple-surface);
+  --color-notion-pink-surface: var(--notion-pink-surface);
+  --color-notion-red-surface: var(--notion-red-surface);
+
   --font-display: var(--font-plus-jakarta-sans);
   --font-body: var(--font-inter);
   --font-hand: var(--font-caveat);
+  --font-mono: var(--font-geist-mono);
 }
 
 @layer base {
   body {
     @apply bg-background text-primary font-body;
+  }
+  pre code {
+    @apply font-mono;
   }
 }
 
@@ -87,8 +152,18 @@
   animation-name: transitionsOpen;
   animation-duration: 1.2s;
 }
+:where(.light) code[data-theme*="light"],
+:where(.light) code[data-theme*="light"] span:not([data-line]) {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
 
-/* Code block container */
+:where(.dark) code[data-theme*="dark"],
+:where(.dark) code[data-theme*="dark"] span:not([data-line]) {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
 pre {
   margin: 0;
   padding: 1rem 0;
@@ -99,15 +174,12 @@ pre {
 
 pre code {
   display: grid !important;
-  font-family: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
   font-size: 0.875rem;
   line-height: 1.7;
   counter-reset: line;
   background: transparent;
 }
 
-/* Line styling */
 pre code [data-line] {
   counter-increment: line;
   position: relative;
@@ -116,7 +188,6 @@ pre code [data-line] {
   border-left: 3px solid transparent;
 }
 
-/* Line numbers - Notion style */
 pre code [data-line]::before {
   content: counter(line);
   position: absolute;
@@ -130,7 +201,6 @@ pre code [data-line]::before {
   pointer-events: none;
 }
 
-/* Highlighted line - Notion style subtle highlight */
 pre code .highlighted-line,
 pre code [data-highlighted-line] {
   background: rgba(99, 179, 237, 0.1);
@@ -142,7 +212,6 @@ pre code [data-highlighted-line]::before {
   color: #58a6ff;
 }
 
-/* Highlighted chars/words - Notion style */
 pre code .highlighted-chars,
 pre code [data-highlighted-chars] {
   background: rgba(187, 128, 9, 0.15);
@@ -151,58 +220,49 @@ pre code [data-highlighted-chars] {
   box-shadow: 0 0 0 1px rgba(187, 128, 9, 0.2);
 }
 
-/* Diff additions - Notion style green */
 pre code .diff-add,
-pre code [data-line].diff-add {
+pre code [data-line].diff-add,
+pre code [data-diff="add"],
+pre code [data-line][data-diff="add"] {
   background: rgba(46, 160, 67, 0.15);
   border-left-color: #3fb950;
 }
-
-pre code .diff-add::before {
+pre code .diff-add::before,
+pre code [data-line][data-diff="add"]::before {
   content: "+" counter(line);
   color: #3fb950;
   font-weight: 600;
 }
 
-/* Diff removals - Notion style red */
 pre code .diff-remove,
-pre code [data-line].diff-remove {
+pre code [data-line].diff-remove,
+pre code [data-diff="remove"],
+pre code [data-line][data-diff="remove"] {
   background: rgba(248, 81, 73, 0.15);
   border-left-color: #f85149;
   opacity: 0.85;
 }
-
-pre code .diff-remove::before {
+pre code .diff-remove::before,
+pre code [data-line][data-diff="remove"]::before {
   content: "-" counter(line);
   color: #f85149;
   font-weight: 600;
 }
 
-/* Hover effect on lines */
+pre code [data-line].diff-add:hover,
+pre code [data-line][data-diff="add"]:hover {
+  background: rgba(46, 160, 67, 0.22);
+}
+pre code [data-line].diff-remove:hover,
+pre code [data-line][data-diff="remove"]:hover {
+  background: rgba(248, 81, 73, 0.22);
+}
+
 pre code [data-line]:hover {
   background: rgba(110, 118, 129, 0.04);
 }
 
-/* Selection styling */
 pre code [data-line]::selection,
 pre code [data-line] *::selection {
   background: rgba(88, 166, 255, 0.3);
-}
-
-/* Scrollbar styling for code blocks */
-pre::-webkit-scrollbar {
-  height: 8px;
-}
-
-pre::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-pre::-webkit-scrollbar-thumb {
-  background: rgba(110, 118, 129, 0.4);
-  border-radius: 4px;
-}
-
-pre::-webkit-scrollbar-thumb:hover {
-  background: rgba(110, 118, 129, 0.6);
 }
