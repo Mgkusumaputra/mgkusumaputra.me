@@ -26,7 +26,7 @@ export function ExperienceItem({
           alt={company}
           width={24}
           height={24}
-          className="w-6 h-6"
+          className="w-auto h-6"
         />
       </div>
 

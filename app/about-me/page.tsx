@@ -46,7 +46,7 @@ export default function AboutMe() {
 function BioRenderer({ children }: { children: React.ReactNode }) {
   return (
     <MDXProvider components={aboutMe}>
-      <article className="flex flex-col gap-3 text-balance">{children}</article>
+      <article className="flex flex-col gap-3 mt-6">{children}</article>
     </MDXProvider>
   );
 }
