@@ -1,0 +1,86 @@
+---
+title: "Laziness > dockerfile"
+date: "28-04-2026"
+description: "how laziness, a quota reset, and AI model turned into a postgres CLI."
+published: true
+---
+
+okay so this is literally my first blog post, so bear with me.
+
+it was morning, i just opened my pc and was watching youtube, thinking about what i should do today.
+
+then i opened antigravity, saw my claude quota just topped up, and thought okay. let's build something.
+
+so basically i always been thinking about this for a long time. last year i was working a lot on fullstack projects and every single time i need a local postgres, i either have to write that long docker run command with all the flags, or spin up supabase locally which honestly feels like using a rocket ship to go to the convenience store. too powerful 😂. i just want a database, not an entire platform.
+
+so i've been copy-pasting that docker run command from old projects for years with same command for different project every time.
+
+i thought, what if `pg create` just did all of that. from whatever folder i'm in.
+
+quota full. let's go.
+
+## building with claude sonnet 4.6
+
+so vibe coding a full project is kind of addicting and i say this as someone who just wanted to spend a free morning on something fun. you describe what you want, it generates, you react, repeat and before i knew it i had a full Go CLI that actually worked.
+
+the tool is called [pg-factory](https://github.com/Mgkusumaputra/pg-factory) and it does exactly what i was too lazy to do manually. spins up an isolated postgres container per project, auto-links your current folder to the instance, writes DATABASE_URL straight into `.env.local`, keeps all the state in `~/.pgfactory/` so it never touches your repo. you `pg create` once and you're connected in seconds.
+
+when it worked for the first time and DATABASE_URL just appeared in my `.env.local` correctly, i was genuinely amazed and it made me love AI agentic even more 😂. like okay. this is the thing.
+
+i did not expect it to get this complete. but here's the other side of it.
+
+## the "final audit" that never ends
+
+at some point i told sonnet "audit everything in the repo, performance issues, golang style, all of it."
+
+and it did. and it worked. things got better.
+
+so naturally i said okay, do a final check before we wrap up.
+
+and it found new problems.
+
+so i said okay, final audit, for real this time.
+
+new problems 🗿.
+
+i think i said "final audit" like three times and every time sonnet was like actually wait i found something and look, on one hand, good, the code got more correct. on the other hand i said FINAL. that word has a meaning.
+
+i'm not fully blaming the model (jk, i think i need upgrade to opus 😅). i'm probably bad at prompting. but also i think "final audit" should be a legally binding statement and sonnet should respect that.
+
+## does it work though
+
+yeah and i use it every day now. with this simple command
+
+```bash
+pg create    # spins up the container, writes DATABASE_URL, done
+pg up        # start it again after reboot
+pg down      # stop it, data stays
+pg connect   # drops you into psql
+pg list      # see everything running
+```
+
+no more long docker run essays. no more running supabase locally for a side project that just needs one table. just `pg create` from inside your project folder and it figures out the rest.
+
+you need Docker and Go 1.21+ and then:
+
+```bash
+# mac / linux / wsl
+curl -fsSL https://raw.githubusercontent.com/Mgkusumaputra/pg-factory/main/install.sh | bash
+
+# windows
+irm https://raw.githubusercontent.com/Mgkusumaputra/pg-factory/main/install.ps1 | iex
+```
+
+## okay but what's the actual takeaway
+
+two things.
+
+1. laziness is a valid engineering motivation. like genuinely. the best tools exist because someone got annoyed enough to stop tolerating the friction and just fix it. i was tired of copy-pasting a docker command and now there's a binary for it. that counts.
+
+2. if you've been vibe coding only on todo apps or small prompts, try doing it on a real project. something you'd actually use. the experience is completely different because you're forced to think, not just react to the output. the AI does the fast parts, you do the thinking parts, and somehow at the end of a morning you have a thing that works.
+
+i started this because my quota reset and i had nothing else to do. i ended up with a tool i open every single day.
+
+if that's not a sign to just start building whatever's been annoying you, i don't know what is.
+
+Try it, break it, open a PR if you want 😁 [github.com/Mgkusumaputra/pg-factory](https://github.com/Mgkusumaputra/pg-factory)

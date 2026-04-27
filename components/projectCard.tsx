@@ -24,49 +24,26 @@ export function ProjectDescription({
 }) {
   return (
     <div className="flex flex-col gap-3 px-3 py-4.5">
-      <span className="flex items-center gap-1.5">
-        {typeof icon === "string" ? (
-          <Image
-            alt={title}
-            src={icon}
-            width={28}
-            height={28}
-            className="w-7 h-7"
-          />
-        ) : (
-          icon
-        )}
+      <span className="flex items-center">
+        <span
+          className="mr-1.5 w-5 h-5 shrink-0 flex items-center justify-center overflow-hidden
+          [&>div]:w-full [&>div]:h-full
+          [&>div>svg]:w-full [&>div>svg]:h-full"
+        >
+          {typeof icon === "string" ? <Image alt={title} src={icon} width={28} height={28} className="w-full h-full" /> : icon}
+        </span>
 
         {link ? (
-          <CLink
-            className="font-display font-semibold text-xl text-primary no-underline"
-            href={link}
-            value={title}
-          />
+          <CLink className="font-display font-semibold text-xl text-primary no-underline" href={link} value={title} />
         ) : (
-          <h2 className="font-display font-semibold text-xl text-primary">
-            {title}
-          </h2>
+          <h2 className="font-display font-semibold text-xl text-primary">{title}</h2>
         )}
       </span>
-      <div className="prose prose-sm text-base text-secondary max-w-prose ">
-        {content}
-      </div>
+      <p className="prose prose-sm text-base text-secondary max-w-prose ">{content}</p>
     </div>
   );
 }
 
-export function ProjectCard({
-  title,
-  description,
-  link,
-}: {
-  title: string;
-  description?: string;
-  link?: string;
-}) {
-  return (
-    <Card title={title} description={description} href={link || ""} icon />
-  );
+export function ProjectCard({ title, description, link }: { title: string; description?: string; link?: string }) {
+  return <Card title={title} description={description} href={link || ""} icon={!!link} />;
 }
-

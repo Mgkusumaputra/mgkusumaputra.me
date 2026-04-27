@@ -11,7 +11,7 @@ export default async function Writing() {
 
   return (
     <main className="flex flex-col px-8 py-15 gap-6">
-      <h1 className="font-hand font-medium text-3xl">My Project Lists</h1>
+      <h1 className="font-hand font-medium text-3xl">My Blog Lists</h1>
 
       <div className="flex flex-col gap-3">
         {writings.map((writing, index) => (
