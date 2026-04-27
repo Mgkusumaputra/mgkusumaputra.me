@@ -1,16 +1,13 @@
 import CLink from "@/components/cLink";
 import MDXRenderer from "@/components/writing/mdxRenderer";
 import { ViewCounter } from "@/components/writing/viewCounter";
+import { FormatDate } from "@/lib/formatDate";
 import { getViews } from "@/lib/getViews";
 import { getAllWritings, getAllWritingStatics } from "@/lib/writing";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const writings = getAllWritingStatics();
   const writing = writings.find((p) => p.slug === slug);
@@ -39,11 +36,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function WritingPost({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function WritingPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const writings = await getAllWritings();
   const writing = writings.find((p) => p.slug === slug);
@@ -55,7 +48,7 @@ export default async function WritingPost({
   return (
     <main className="flex flex-col px-8 py-15 gap-7.5">
       <div className="flex flex-col gap-4.5">
-        <p className="text-sm text-secondary">{writing.date}</p>
+        <p className="text-sm text-secondary">{FormatDate(writing.date)}</p>
         <h1 className="font-hand font-medium text-4xl">{writing.title}</h1>
         <div className="flex flex-wrap justify-between items-center gap-1.5 text-sm text-secondary">
           <CLink href="" value="@mgkusumaputra" className="no-underline" />
@@ -72,4 +65,3 @@ export default async function WritingPost({
     </main>
   );
 }
-
