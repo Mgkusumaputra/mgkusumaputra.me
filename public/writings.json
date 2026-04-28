@@ -13,6 +13,10 @@
     "slug": "notiontest",
     "title": "Notion tester",
     "description": "First post from my writings"
+  },
+  {
+    "slug": "first-vibe-coding",
+    "title": "Laziness > dockerfile",
+    "description": "how laziness, a quota reset, and AI model turned into a postgres CLI."
   }
 ]
-
