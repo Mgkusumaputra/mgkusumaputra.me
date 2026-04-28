@@ -2,8 +2,6 @@ import { ImageResponse } from "next/og";
 import { headers } from "next/headers";
 import { getAllWritingStatics } from "@/lib/writing";
 
-// export const runtime = "edge";
-
 export const size = {
   width: 1200,
   height: 630,
@@ -56,7 +54,9 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "center",
-        ...(backgroundImage ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover" } : { backgroundColor: "#F4F4F5" }),
+        ...(backgroundImage
+          ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover" }
+          : { backgroundColor: "#F4F4F5" }),
       }}
     >
       <div
