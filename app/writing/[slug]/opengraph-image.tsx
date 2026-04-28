@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { headers } from "next/headers";
+import { getAllWritingStatics } from "@/lib/writing";
 
 // export const runtime = "edge";
 
@@ -11,26 +11,41 @@ export const size = {
 
 export const contentType = "image/png";
 
-async function getWritingBySlug(slug: string) {
-  const writings = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/writings.json`, { cache: "force-cache" }).then((res) =>
-    res.json(),
-  );
+function getWritingBySlug(slug: string) {
+  const writings = getAllWritingStatics();
+  return writings.find((writing) => writing.slug === slug);
+}
 
-  const writing = await writings.find((w: { slug: string }) => w.slug === slug);
+async function getPlusJakartaSansFont() {
+  const headerStore = await headers();
+  const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host");
+  const protocol = headerStore.get("x-forwarded-proto") ?? (host?.includes("localhost") ? "http" : "https");
 
-  return writing;
+  if (!host) {
+    throw new Error("Unable to resolve host for OG font fetch.");
+  }
+
+  const fontUrl = `${protocol}://${host}/fonts/PlusJakartaSans-Medium.ttf`;
+  const response = await fetch(fontUrl, { cache: "force-cache" });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch OG font. Status: ${response.status}`);
+  }
+
+  return response.arrayBuffer();
 }
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
-  const writing = await getWritingBySlug(slug);
+  const writing = getWritingBySlug(slug);
 
   if (!writing) {
     return new Response("Not Found", { status: 404 });
   }
 
-  const PJSData = await readFile(join(process.cwd(), "/public/fonts/PlusJakartaSans-Medium.ttf"));
+  const plusJakartaSansData = await getPlusJakartaSansFont();
+  const backgroundImage = process.env.OG_BACKGROUND_URL;
 
   return new ImageResponse(
     <div
@@ -41,7 +56,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "center",
-        backgroundImage: `url(${process.env.OG_BACKGROUND_URL})`,
+        ...(backgroundImage ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover" } : { backgroundColor: "#F4F4F5" }),
       }}
     >
       <div
@@ -51,6 +66,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           display: "flex",
           fontSize: 64,
           color: "#0E0E0D",
+          fontFamily: "Plus Jakarta Sans",
           lineHeight: "80px",
           letterSpacing: "0px",
           whiteSpace: "pre-wrap",
@@ -64,7 +80,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
       fonts: [
         {
           name: "Plus Jakarta Sans",
-          data: PJSData,
+          data: plusJakartaSansData,
           style: "normal",
         },
       ],
