@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og";
-import { headers } from "next/headers";
-import { getAllWritingStatics } from "@/lib/writing";
+import writings from "@/public/writings.json";
 
 export const size = {
   width: 1200,
@@ -9,25 +8,24 @@ export const size = {
 
 export const contentType = "image/png";
 
+type WritingMetadata = {
+  slug: string;
+  title: string;
+};
+
+const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_URL
+  ? new URL(process.env.NEXT_PUBLIC_SITE_URL).origin
+  : "https://mgkusumaputra.me";
+
 function getWritingBySlug(slug: string) {
-  const writings = getAllWritingStatics();
-  return writings.find((writing) => writing.slug === slug);
+  return (writings as WritingMetadata[]).find((writing) => writing.slug === slug);
 }
 
 async function getPlusJakartaSansFont() {
-  const headerStore = await headers();
-  const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host");
-  const protocol = headerStore.get("x-forwarded-proto") ?? (host?.includes("localhost") ? "http" : "https");
-
-  if (!host) {
-    throw new Error("Unable to resolve host for OG font fetch.");
-  }
-
-  const fontUrl = `${protocol}://${host}/fonts/PlusJakartaSans-Medium.ttf`;
-  const response = await fetch(fontUrl, { cache: "force-cache" });
+  const response = await fetch(`${SITE_ORIGIN}/fonts/PlusJakartaSans-Medium.ttf`, { cache: "force-cache" });
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch OG font. Status: ${response.status}`);
+    throw new Error(`Failed to load OG font. Status: ${response.status}`);
   }
 
   return response.arrayBuffer();
