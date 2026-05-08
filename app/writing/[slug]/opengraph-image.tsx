@@ -11,6 +11,7 @@ export const contentType = "image/png";
 type WritingMetadata = {
   slug: string;
   title: string;
+  description: string;
 };
 
 const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_URL
@@ -18,11 +19,16 @@ const SITE_ORIGIN = process.env.NEXT_PUBLIC_SITE_URL
   : "https://mgkusumaputra.me";
 
 function getWritingBySlug(slug: string) {
-  return (writings as WritingMetadata[]).find((writing) => writing.slug === slug);
+  return (writings as WritingMetadata[]).find(
+    (writing) => writing.slug === slug,
+  );
 }
 
 async function getPlusJakartaSansFont() {
-  const response = await fetch(`${SITE_ORIGIN}/fonts/PlusJakartaSans-Medium.ttf`, { cache: "force-cache" });
+  const response = await fetch(
+    `${SITE_ORIGIN}/fonts/PlusJakartaSans-Medium.ttf`,
+    { cache: "force-cache" },
+  );
 
   if (!response.ok) {
     throw new Error(`Failed to load OG font. Status: ${response.status}`);
@@ -31,7 +37,11 @@ async function getPlusJakartaSansFont() {
   return response.arrayBuffer();
 }
 
-export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Image({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
 
   const writing = getWritingBySlug(slug);
@@ -53,7 +63,10 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         alignItems: "flex-start",
         justifyContent: "center",
         ...(backgroundImage
-          ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover" }
+          ? {
+              backgroundImage: `url(${backgroundImage})`,
+              backgroundSize: "cover",
+            }
           : { backgroundColor: "#F4F4F5" }),
       }}
     >
@@ -71,6 +84,20 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         }}
       >
         {writing.title}
+      </div>
+      <div
+        style={{
+          width: 760,
+          marginLeft: 80,
+          display: "flex",
+          fontSize: 28,
+          color: "#565656",
+          fontFamily: "Plus Jakarta Sans",
+          letterSpacing: "1px",
+          whiteSpace: "pre-wrap",
+        }}
+      >
+        {writing.description}
       </div>
     </div>,
     {
