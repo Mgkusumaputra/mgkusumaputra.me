@@ -29,6 +29,7 @@
     "remark-frontmatter": "^5.0.0",
     "remark-math": "^6.0.0",
     "remark-mdx-frontmatter": "^5.2.0",
+    "resend": "^6.12.3",
     "rss": "^1.2.2",
     "shiki": "^3.20.0",
     "tailwind-merge": "^3.4.0",
@@ -46,4 +47,3 @@
     "typescript": "^5.9.3"
   }
 }
-
