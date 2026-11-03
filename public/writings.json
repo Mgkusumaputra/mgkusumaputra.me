@@ -18,5 +18,10 @@
     "slug": "first-vibe-coding",
     "title": "Laziness > dockerfile",
     "description": "how laziness, a quota reset, and AI model turned into a postgres CLI."
+  },
+  {
+    "slug": "resume-formating-sucks",
+    "title": "Resume formatting sucks",
+    "description": "i wanted to update my resume, not spend another hour fixing the layout."
   }
 ]
